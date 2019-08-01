@@ -221,6 +221,48 @@ textarea {
   overflow: hidden;
 }
 
+html {
+  font-size: 125%;
+  font-family: sans-serif;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+li,
+a,
+label,
+textarea {
+  font-family: "Raleway";
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.wrapper {
+  width: 80%;
+  margin: 0 auto;
+  max-width: 1440px;
+}
+
 button {
   background: blue;
   font-size: 2rem;

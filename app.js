@@ -72,13 +72,8 @@ let correctGuesses = [];
 // incorrect guesses result in strikes
 let strikeCounter = 0;
 
+// underscores will replace the letters of the randomly chosen word, and will be appended to the page
 let underscores = [];
-
-const gameOver = function() {
-    if (strikeCounter === 7) {
-        alert('Game over. You lose!');
-    }
-}
 
 // gets a random word from the array of possible words
 const randomWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
@@ -89,8 +84,6 @@ const splitRandomWord = randomWord.toUpperCase().split('');
 console.log(splitRandomWord);
 
 // write a function that replaces each letter in the split name with underscores
-// don't replace the space
-
 const underscoreWord = splitRandomWord.forEach(() => {
     underscores.push('__');
     return underscores;
@@ -124,7 +117,7 @@ for (let i = 0; i < letterButtons.length; i++) {
     })
 }
 
-
+// take a guess from the user, and determine whether it is correct or not
 const userGuess = function() {
     for (let j = 0; j < randomWord.length; j++) {
         if (randomWord[j] === guessedLetter) {
@@ -136,14 +129,18 @@ const userGuess = function() {
 }
 // userGuess();
 
-
-
 // const displayRandomWord = function() {
 //     return document.body.appendChild(document.createElement('p'));
 // }
 
 // console.log(displayRandomWord());
 
+// function that checks if the game is over
+const gameOver = function () {
+    if (strikeCounter === 7) {
+        alert('Game over. You lose!');
+    }
+}
 
 // API CALL - THIS WILL BE A STRETCH GOAL 
 
