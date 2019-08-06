@@ -1,9 +1,11 @@
 button {
-    background: blue;
+    background: white;
+    color: black;
     font-size: 2rem;
     width: 60px;
 }
 
 button:disabled {
-    background: red;
+    background: black;
+    color: white
 }

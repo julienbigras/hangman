@@ -83,12 +83,22 @@ console.log(randomWord);
 const splitRandomWord = randomWord.toUpperCase().split('');
 console.log(splitRandomWord);
 
-// write a function that replaces each letter in the split name with underscores
+// replaces each letter in the split name array with underscores
 const underscoreWord = splitRandomWord.forEach(() => {
     underscores.push('__');
     return underscores;
 })
 console.log(underscores);
+
+// change the array of underscores into a string
+const underscoresString = underscores.join(' ');
+console.log(underscoresString);
+
+// append the string of underscores to the page
+const wordToGuessSection = document.getElementById('wordToGuess');
+let guess = document.createElement('p');
+guess.innerHTML = underscoresString;
+wordToGuessSection.appendChild(guess);
 
 // const generateUnderscores = () => {
 //     for (let i = 0; i < randomWord.length; i++) {
@@ -101,39 +111,41 @@ console.log(underscores);
 //     }
 // }
 
-// console.log(generateUnderscores());
-
 // get all the elements with a class name of "letterButton"
 const letterButtons = document.getElementsByClassName('letterButton');
-console.log(letterButtons);
 
 // loop over the "letterButtons" elements, and add an event listener to each one
 for (let i = 0; i < letterButtons.length; i++) {
     letterButtons[i].addEventListener('click', () => {
         let guessedLetter = letterButtons[i].value;
+
+        for (let j = 0; j < randomWord.length; j++) {
+            if (randomWord[j] === guessedLetter) {
+                correctGuesses.push(randomWord[j])
+            } else {
+                strikeCounter++;
+            }
+        }
+
         letterButtons[i].disabled = true;
         console.log(guessedLetter);
-        return guessedLetter;
+        console.log(correctGuesses);
+        console.log(strikeCounter);
+        // return guessedLetter;
     })
 }
 
 // take a guess from the user, and determine whether it is correct or not
-const userGuess = function() {
-    for (let j = 0; j < randomWord.length; j++) {
-        if (randomWord[j] === guessedLetter) {
-            correctGuesses.push(randomWord[i])
-        } else {
-            strikeCounter++;
-        }
-    }
-}
-// userGuess();
-
-// const displayRandomWord = function() {
-//     return document.body.appendChild(document.createElement('p'));
+// const userGuess = function () {
+//     for (let j = 0; j < randomWord.length; j++) {
+//         if (randomWord[j] === guessedLetter) {
+//             correctGuesses.push(randomWord[i])
+//         } else {
+//             strikeCounter++;
+//         }
+//     }
 // }
-
-// console.log(displayRandomWord());
+// userGuess();
 
 // function that checks if the game is over
 const gameOver = function () {
@@ -157,8 +169,8 @@ const gameOver = function () {
 //     })
 //     .then(function(data) {
 //         console.log(data);
-//         const names = data.map(function(datum) {
-//             return datum.name;
+//         const names = data.forEach(function() {
+//             return data.name;
 //         })
 //         characterNames.push(names);
 //     })

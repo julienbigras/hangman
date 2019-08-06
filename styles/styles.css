@@ -263,13 +263,19 @@ a {
   max-width: 1440px;
 }
 
+.letterButtonContainer {
+  margin-top: 10%;
+}
+
 button {
-  background: blue;
+  background: white;
+  color: black;
   font-size: 2rem;
   width: 60px;
 }
 
 button:disabled {
-  background: red;
+  background: black;
+  color: white;
 }
 /*# sourceMappingURL=styles.css.map */
