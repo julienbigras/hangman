@@ -263,6 +263,10 @@ a {
   max-width: 1440px;
 }
 
+.wordToGuess {
+  margin-top: 10%;
+}
+
 .letterButtonContainer {
   margin-top: 10%;
 }

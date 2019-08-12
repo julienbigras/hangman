@@ -70,7 +70,7 @@ const wordOptions = [
 let correctGuesses = [];
 
 // incorrect guesses result in strikes
-let strikeCounter = 0;
+let strikeCounter = 7;
 
 // underscores will replace the letters of the randomly chosen word, and will be appended to the page
 let underscores = [];
@@ -80,32 +80,38 @@ const randomWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
 console.log(randomWord);
 
 // splits the randomly chosen word into an array of individual letters
-const splitRandomWord = randomWord.toUpperCase().split('');
+const splitRandomWord = randomWord.split('');
 console.log(splitRandomWord);
 
 // replaces each letter in the split name array with underscores
 const underscoreWord = splitRandomWord.forEach(() => {
-    underscores.push('__');
+    underscores.push('_');
     return underscores;
 })
 console.log(underscores);
 
 // change the array of underscores into a string
-const underscoresString = underscores.join(' ');
-console.log(underscoresString);
+// const underscoresString = underscores.join(' ');
+// console.log(underscoresString);
 
 // append the string of underscores to the page
 const wordToGuessSection = document.getElementById('wordToGuess');
 let guess = document.createElement('p');
-guess.innerHTML = underscoresString;
+guess.innerHTML = underscores.join(' ');
 wordToGuessSection.appendChild(guess);
+
+// append the strike counter to the page
+const strikesSection = document.getElementById('strikes');
+let strike = document.createElement('p');
+strike.innerHTML = `Strikes Remaining: ${strikeCounter}`;
+strikesSection.appendChild(strike);
 
 // const generateUnderscores = () => {
 //     for (let i = 0; i < randomWord.length; i++) {
 //         if (getRandomWord[i] === /\s/) {
 //             underscores.push(' ');
 //         } else {
-//             underscores.push('__');
+//             underscores.push('_');
 //         }
 //     return underscores;
 //     }
@@ -119,19 +125,41 @@ for (let i = 0; i < letterButtons.length; i++) {
     letterButtons[i].addEventListener('click', () => {
         let guessedLetter = letterButtons[i].value;
 
+        // disable the clicked button so that the user knows it's been selected
+        letterButtons[i].disabled = true;
+
+        // TRY USING INDEX OF RATHER THAN LOOPS
+
+        // if (randomWord.indexOf(guessedLetter.toLowerCase()) >= 0) {
+        //     correctGuesses.push(guessedLetter);
+        // }
+
+        // loops through the letters of the word, and if the guessed letter is found in the word, it pushes those letters to the correct guesses array
         for (let j = 0; j < randomWord.length; j++) {
             if (randomWord[j] === guessedLetter) {
                 correctGuesses.push(randomWord[j])
-            } else {
-                strikeCounter++;
+                underscores[j] = randomWord[j];
+                guess.innerHTML = underscores.join(' ').toUpperCase();
             }
         }
 
-        letterButtons[i].disabled = true;
+        // logs a strike if the guessed letter is not found in the word
+        // appends the new strike count to the page
+        if (randomWord.indexOf(guessedLetter.toLowerCase()) === -1) {
+            strikeCounter--;
+            strike.innerHTML = `Strikes Remaining: ${strikeCounter}`;
+        }
+
         console.log(guessedLetter);
         console.log(correctGuesses);
         console.log(strikeCounter);
+        console.log(underscores);
         // return guessedLetter;
+
+        if (correctGuesses.length === randomWord.length) {
+            alert('WOO, you win!')
+        }
+
     })
 }
 
