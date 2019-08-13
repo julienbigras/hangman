@@ -264,11 +264,15 @@ a {
 }
 
 .wordToGuess {
-  margin-top: 10%;
+  margin: 5% 0;
 }
 
 .letterButtonContainer {
-  margin-top: 10%;
+  margin-top: 5%;
+}
+
+canvas {
+  border: 1px solid black;
 }
 
 button {

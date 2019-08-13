@@ -69,8 +69,8 @@ const wordOptions = [
 // correct guesses will be pushed to this array
 let correctGuesses = [];
 
-// incorrect guesses result in strikes
-let strikeCounter = 7;
+// incorrect guesses reduce the amount of lives remaining
+let lifeCounter = 7;
 
 // underscores will replace the letters of the randomly chosen word, and will be appended to the page
 let underscores = [];
@@ -90,10 +90,6 @@ const underscoreWord = splitRandomWord.forEach(() => {
 })
 console.log(underscores);
 
-// change the array of underscores into a string
-// const underscoresString = underscores.join(' ');
-// console.log(underscoresString);
-
 // append the string of underscores to the page
 const wordToGuessSection = document.getElementById('wordToGuess');
 let guess = document.createElement('p');
@@ -101,10 +97,10 @@ guess.innerHTML = underscores.join(' ');
 wordToGuessSection.appendChild(guess);
 
 // append the strike counter to the page
-const strikesSection = document.getElementById('strikes');
-let strike = document.createElement('p');
-strike.innerHTML = `Strikes Remaining: ${strikeCounter}`;
-strikesSection.appendChild(strike);
+const livesSection = document.getElementById('lives');
+let lives = document.createElement('p');
+lives.innerHTML = `You have ${lifeCounter} lives remaining.`;
+livesSection.appendChild(lives);
 
 // const generateUnderscores = () => {
 //     for (let i = 0; i < randomWord.length; i++) {
@@ -128,12 +124,6 @@ for (let i = 0; i < letterButtons.length; i++) {
         // disable the clicked button so that the user knows it's been selected
         letterButtons[i].disabled = true;
 
-        // TRY USING INDEX OF RATHER THAN LOOPS
-
-        // if (randomWord.indexOf(guessedLetter.toLowerCase()) >= 0) {
-        //     correctGuesses.push(guessedLetter);
-        // }
-
         // loops through the letters of the word, and if the guessed letter is found in the word, it pushes those letters to the correct guesses array
         for (let j = 0; j < randomWord.length; j++) {
             if (randomWord[j] === guessedLetter) {
@@ -146,22 +136,80 @@ for (let i = 0; i < letterButtons.length; i++) {
         // logs a strike if the guessed letter is not found in the word
         // appends the new strike count to the page
         if (randomWord.indexOf(guessedLetter.toLowerCase()) === -1) {
-            strikeCounter--;
-            strike.innerHTML = `Strikes Remaining: ${strikeCounter}`;
+            lifeCounter--;
+            lives.innerHTML = `You have ${lifeCounter} lives remaining.`;
+            if (lifeCounter === 1) {
+                lives.innerHTML = `You have ${lifeCounter} life remaining!`;
+            }
         }
 
         console.log(guessedLetter);
         console.log(correctGuesses);
-        console.log(strikeCounter);
+        console.log(lifeCounter);
         console.log(underscores);
-        // return guessedLetter;
 
         if (correctGuesses.length === randomWord.length) {
-            alert('WOO, you win!')
+            setTimeout(function() {
+                alert('WOO, you win!')
+            }, 050);
+            document.getElementById('letterButtonContainer').style.display = 'none';
         }
 
     })
 }
+
+const drawHangman = function() {
+
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    ctx.lineWidth=  '2';
+
+    // vertical bar left
+    ctx.beginPath();
+    ctx.moveTo(50, 20);
+    ctx.lineTo(50, 175);
+    ctx.stroke();
+    
+    // vertical bar right
+    ctx.beginPath();
+    ctx.moveTo(60, 20);
+    ctx.lineTo(60, 175);
+    ctx.stroke();
+
+    // horizontal bar top
+    ctx.beginPath();
+    ctx.moveTo(50, 20);
+    ctx.lineTo(130, 20);
+    ctx.stroke();
+
+    // horizontal bar right
+    ctx.beginPath();
+    ctx.moveTo(130, 20);
+    ctx.lineTo(130, 30);
+    ctx.stroke();
+
+    // horizontal bar bottom
+    ctx.beginPath();
+    ctx.moveTo(130, 30);
+    ctx.lineTo(60, 30);
+    ctx.stroke();
+
+    // bottom
+    ctx.beginPath();
+    ctx.moveTo(20, 175);
+    ctx.lineTo(170, 175);
+    ctx.stroke();
+
+    // diagonal left
+    ctx.beginPath();
+    ctx.moveTo(50, 60);
+    ctx.lineTo(90, 20);
+    ctx.stroke();
+
+
+}
+
+drawHangman();
 
 // take a guess from the user, and determine whether it is correct or not
 // const userGuess = function () {
@@ -169,15 +217,15 @@ for (let i = 0; i < letterButtons.length; i++) {
 //         if (randomWord[j] === guessedLetter) {
 //             correctGuesses.push(randomWord[i])
 //         } else {
-//             strikeCounter++;
+//             lifeCounter++;
 //         }
 //     }
 // }
 // userGuess();
 
 // function that checks if the game is over
-const gameOver = function () {
-    if (strikeCounter === 7) {
+const gameOver = function() {
+    if (lifeCounter === 7) {
         alert('Game over. You lose!');
     }
 }

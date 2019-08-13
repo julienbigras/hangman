@@ -11,20 +11,21 @@
     <header>
         <div class="wrapper">
             <h1>Hangman</h1>    
-            <h2>Can you correctly guess the word before running out of chances?</h2>
+            <h2>Can you correctly guess the word before running out of lives?</h2>
         </div>
     </header>
     <body>
         <div class="wrapper">
             <section>
                 <div class="wordToGuess" id="wordToGuess">
-                    <!-- word to be guessed shows up here? -->
+                    <!-- word to be guessed shows up here -->
                 </div>
-                <div class="strikes" id="strikes">
-                    <!-- strike counter displayed here? -->
+                <canvas id="canvas" width="200" height="200"></canvas>
+                <div class="lives" id="lives">
+                    <!-- life counter displayed here -->
                 </div>
             </section>
-            <section class="letterButtonContainer">
+            <section class="letterButtonContainer" id="letterButtonContainer">
                 <button class="letterButton" value="a">A</button>
                 <button class="letterButton" value="b">B</button>
                 <button class="letterButton" value="c">C</button>
