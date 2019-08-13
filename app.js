@@ -68,27 +68,59 @@ const wordOptions = [
 
 // correct guesses will be pushed to this array
 let correctGuesses = [];
-
 // incorrect guesses reduce the amount of lives remaining
 let lifeCounter = 7;
-
 // underscores will replace the letters of the randomly chosen word, and will be appended to the page
 let underscores = [];
+// the randomly chosen word to be guessed by the user
+let randomWord = '';
+// the letter chosen by the user
+let guessedLetter = '';
 
-// gets a random word from the array of possible words
-const randomWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
-console.log(randomWord);
+// function to start (or restart) the game
+const startGame = function() {
 
-// splits the randomly chosen word into an array of individual letters
-const splitRandomWord = randomWord.split('');
-console.log(splitRandomWord);
+    // resets the global variables
+    correctGuesses = [];
+    lifeCounter = 7;
+    underscores = [];
+    
+    // gets a random word from the array of possible words
+    randomWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
+    console.log(randomWord);
 
-// replaces each letter in the split name array with underscores
-const underscoreWord = splitRandomWord.forEach(() => {
-    underscores.push('_');
-    return underscores;
-})
-console.log(underscores);
+    // splits the randomly chosen word into an array of individual letters
+    const splitRandomWord = randomWord.split('');
+    console.log(splitRandomWord);
+
+    // replaces each letter in the split name array with underscores
+    const underscoreWord = splitRandomWord.forEach(() => {
+        underscores.push('_');
+        return underscores;
+    })
+    console.log(underscores);
+}
+
+startGame();
+
+// =============== MAYBE DON'T NEED THIS NOW THAT I'VE WRITTEN THE START GAME FUNCTION? =================
+
+// // gets a random word from the array of possible words
+// const randomWord  = wordOptions[Math.floor(Math.random() * wordOptions.length)];
+// console.log(randomWord);
+
+// // splits the randomly chosen word into an array of individual letters
+// const splitRandomWord = randomWord.split('');
+// console.log(splitRandomWord);
+
+// // replaces each letter in the split name array with underscores
+// const underscoreWord = splitRandomWord.forEach(() => {
+//     underscores.push('_');
+//     return underscores;
+// })
+// console.log(underscores);
+
+// ===============================================================================
 
 // append the string of underscores to the page
 const wordToGuessSection = document.getElementById('wordToGuess');
@@ -102,6 +134,8 @@ let lives = document.createElement('p');
 lives.innerHTML = `You have ${lifeCounter} lives remaining.`;
 livesSection.appendChild(lives);
 
+// =========== ATTEMPT TO ACCOUNT FOR SPACES IN THE WORD OPTIONS ==============
+
 // const generateUnderscores = () => {
 //     for (let i = 0; i < randomWord.length; i++) {
 //         if (getRandomWord[i] === /\s/) {
@@ -113,55 +147,65 @@ livesSection.appendChild(lives);
 //     }
 // }
 
+// ============================================================================
+
+// take a guess from the user, and determine whether it is correct or not
+const userGuess = function() {
+
+    for (let j = 0; j < randomWord.length; j++) {
+        if (randomWord[j] === guessedLetter) {
+            correctGuesses.push(randomWord[j])
+            underscores[j] = randomWord[j];
+            guess.innerHTML = underscores.join(' ').toUpperCase();
+        }
+    }
+
+    // subtracts a life if the guessed letter is not found in the word
+    // appends the new life count to the page
+    if (randomWord.indexOf(guessedLetter.toLowerCase()) === -1) {
+        lifeCounter--;
+        drawHangman();
+        lives.innerHTML = `You have ${lifeCounter} lives remaining.`;
+        if (lifeCounter === 1) {
+            lives.innerHTML = `You only have ${lifeCounter} life remaining!`;
+        }
+    }
+
+    if (correctGuesses.length === randomWord.length) {
+        setTimeout(function () {
+            alert('WOO, you win!')
+        }, 050);
+        document.getElementById('letterButtonContainer').style.display = 'none';
+    }
+
+    if (lifeCounter === 0) {
+        setTimeout(function () {
+            alert('You have lost. Try again?')
+        }, 050);
+        document.getElementById('letterButtonContainer').style.display = 'none';
+    }
+}
+
 // get all the elements with a class name of "letterButton"
 const letterButtons = document.getElementsByClassName('letterButton');
 
 // loop over the "letterButtons" elements, and add an event listener to each one
 for (let i = 0; i < letterButtons.length; i++) {
     letterButtons[i].addEventListener('click', () => {
-        let guessedLetter = letterButtons[i].value;
 
-        // disable the clicked button so that the user knows it's been selected
+        // assigns the value of the selected letter button to the guessedLetter variable
+        guessedLetter = letterButtons[i].value;
+
+        // disable the clicked button so that the user can't click it again
         letterButtons[i].disabled = true;
 
-        // loops through the letters of the word, and if the guessed letter is found in the word, it pushes those letters to the correct guesses array
-        for (let j = 0; j < randomWord.length; j++) {
-            if (randomWord[j] === guessedLetter) {
-                correctGuesses.push(randomWord[j])
-                underscores[j] = randomWord[j];
-                guess.innerHTML = underscores.join(' ').toUpperCase();
-            }
-        }
-
-        // logs a strike if the guessed letter is not found in the word
-        // appends the new strike count to the page
-        if (randomWord.indexOf(guessedLetter.toLowerCase()) === -1) {
-            lifeCounter--;
-            drawHangman();
-            lives.innerHTML = `You have ${lifeCounter} lives remaining.`;
-            if (lifeCounter === 1) {
-                lives.innerHTML = `You have ${lifeCounter} life remaining!`;
-            }
-        }
+        // runs the userGuess function
+        userGuess();
 
         console.log(guessedLetter);
         console.log(correctGuesses);
         console.log(lifeCounter);
         console.log(underscores);
-
-        if (correctGuesses.length === randomWord.length) {
-            setTimeout(function() {
-                alert('WOO, you win!')
-            }, 050);
-            document.getElementById('letterButtonContainer').style.display = 'none';
-        }
-
-        if (lifeCounter === 0) {
-            setTimeout(function () {
-                alert('You have lost. Try again?')
-            }, 050);
-            document.getElementById('letterButtonContainer').style.display = 'none';
-        }
 
     })
 }
@@ -285,25 +329,40 @@ const drawHangman = function() {
         ctx.moveTo(115, 140);
         ctx.lineTo(140, 165);
         ctx.stroke();
+    } else if (lifeCounter === 0) {
+        // left eye - line 1
+        ctx.beginPath();
+        ctx.moveTo(106, 63);
+        ctx.lineTo(112, 69);
+        ctx.stroke();
+
+        // left eye - line 2
+        ctx.beginPath();
+        ctx.moveTo(106, 69);
+        ctx.lineTo(112, 63);
+        ctx.stroke();
+
+        // right eye - line 1
+        ctx.beginPath();
+        ctx.moveTo(118, 69);
+        ctx.lineTo(124, 63);
+        ctx.stroke();
+
+        // right eye - line 2
+        ctx.beginPath();
+        ctx.moveTo(118, 63);
+        ctx.lineTo(124, 69);
+        ctx.stroke();
+
+        // mouth
+        ctx.beginPath();
+        ctx.moveTo(106, 77);
+        ctx.lineTo(124, 77);
+        ctx.stroke();
     }
 }
 
 drawHangman();
-
-// take a guess from the user, and determine whether it is correct or not
-// const userGuess = function () {
-//     for (let j = 0; j < randomWord.length; j++) {
-//         if (randomWord[j] === guessedLetter) {
-//             correctGuesses.push(randomWord[i])
-//         } else {
-//             lifeCounter++;
-//         }
-//     }
-// }
-// userGuess();
-
-
-
 
 // API CALL - THIS WILL BE A STRETCH GOAL 
 
