@@ -96,7 +96,7 @@ let guess = document.createElement('p');
 guess.innerHTML = underscores.join(' ');
 wordToGuessSection.appendChild(guess);
 
-// append the strike counter to the page
+// append the lives counter to the page
 const livesSection = document.getElementById('lives');
 let lives = document.createElement('p');
 lives.innerHTML = `You have ${lifeCounter} lives remaining.`;
@@ -137,6 +137,7 @@ for (let i = 0; i < letterButtons.length; i++) {
         // appends the new strike count to the page
         if (randomWord.indexOf(guessedLetter.toLowerCase()) === -1) {
             lifeCounter--;
+            drawHangman();
             lives.innerHTML = `You have ${lifeCounter} lives remaining.`;
             if (lifeCounter === 1) {
                 lives.innerHTML = `You have ${lifeCounter} life remaining!`;
@@ -155,6 +156,13 @@ for (let i = 0; i < letterButtons.length; i++) {
             document.getElementById('letterButtonContainer').style.display = 'none';
         }
 
+        if (lifeCounter === 0) {
+            setTimeout(function () {
+                alert('You have lost. Try again?')
+            }, 050);
+            document.getElementById('letterButtonContainer').style.display = 'none';
+        }
+
     })
 }
 
@@ -167,13 +175,19 @@ const drawHangman = function() {
     // vertical bar left
     ctx.beginPath();
     ctx.moveTo(50, 20);
-    ctx.lineTo(50, 175);
+    ctx.lineTo(50, 180);
     ctx.stroke();
     
-    // vertical bar right
+    // vertical bar right - short
     ctx.beginPath();
     ctx.moveTo(60, 20);
-    ctx.lineTo(60, 175);
+    ctx.lineTo(60, 50);
+    ctx.stroke();
+    
+    // vertical bar right - long
+    ctx.beginPath();
+    ctx.moveTo(60, 70);
+    ctx.lineTo(60, 180);
     ctx.stroke();
 
     // horizontal bar top
@@ -188,25 +202,90 @@ const drawHangman = function() {
     ctx.lineTo(130, 30);
     ctx.stroke();
 
-    // horizontal bar bottom
+    // horizontal bar bottom - short
     ctx.beginPath();
-    ctx.moveTo(130, 30);
-    ctx.lineTo(60, 30);
+    ctx.moveTo(60, 30);
+    ctx.lineTo(80, 30);
+    ctx.stroke();
+
+    // horizontal bar bottom - long
+    ctx.beginPath();
+    ctx.moveTo(100, 30);
+    ctx.lineTo(130, 30);
     ctx.stroke();
 
     // bottom
     ctx.beginPath();
-    ctx.moveTo(20, 175);
-    ctx.lineTo(170, 175);
+    ctx.moveTo(20, 180);
+    ctx.lineTo(170, 180);
     ctx.stroke();
 
-    // diagonal left
+    // diagonal top
     ctx.beginPath();
     ctx.moveTo(50, 60);
     ctx.lineTo(90, 20);
     ctx.stroke();
 
+    // diagonal bottom
+    ctx.beginPath();
+    ctx.moveTo(60, 70);
+    ctx.lineTo(100, 30);
+    ctx.stroke();
 
+    // diagonal right
+    ctx.beginPath();
+    ctx.moveTo(90, 20);
+    ctx.lineTo(100, 30);
+    ctx.stroke();
+
+    // diagonal left
+    ctx.beginPath();
+    ctx.moveTo(50, 60);
+    ctx.lineTo(60, 70);
+    ctx.stroke();
+
+    // noose
+    ctx.beginPath();
+    ctx.moveTo(115, 30);
+    ctx.lineTo(115, 52);
+    ctx.stroke();
+
+    if (lifeCounter === 6) {
+        // man's head
+        ctx.beginPath();
+        ctx.arc(115, 70, 18, 0, 2 * Math.PI);
+        ctx.stroke();
+    } else if (lifeCounter === 5) {
+        // man's body
+        ctx.beginPath();
+        ctx.moveTo(115, 88);
+        ctx.lineTo(115, 140);
+        ctx.stroke();
+    } else if (lifeCounter === 4) {
+        // man's left arm
+        ctx.beginPath();
+        ctx.moveTo(115, 100);
+        ctx.lineTo(95, 125);
+        ctx.stroke();
+    } else if (lifeCounter === 3) {
+        // man's right arm
+        ctx.beginPath();
+        ctx.moveTo(115, 100);
+        ctx.lineTo(135, 125);
+        ctx.stroke();
+    } else if (lifeCounter === 2) {
+        // man's left leg
+        ctx.beginPath();
+        ctx.moveTo(115, 140);
+        ctx.lineTo(90, 165);
+        ctx.stroke();
+    } else if (lifeCounter === 1) {
+        // man's right leg
+        ctx.beginPath();
+        ctx.moveTo(115, 140);
+        ctx.lineTo(140, 165);
+        ctx.stroke();
+    }
 }
 
 drawHangman();
@@ -223,12 +302,8 @@ drawHangman();
 // }
 // userGuess();
 
-// function that checks if the game is over
-const gameOver = function() {
-    if (lifeCounter === 7) {
-        alert('Game over. You lose!');
-    }
-}
+
+
 
 // API CALL - THIS WILL BE A STRETCH GOAL 
 
