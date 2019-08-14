@@ -77,6 +77,14 @@ let randomWord = '';
 // the letter chosen by the user
 let guessedLetter = '';
 
+// variables for appending the word to guess to the page
+const wordToGuessSection = document.getElementById('wordToGuess');
+let guess = document.createElement('p');
+
+// variables for appending the life counter to the page
+const livesSection = document.getElementById('lives');
+let lives = document.createElement('p');
+
 // function to start (or restart) the game
 const startGame = function() {
 
@@ -84,6 +92,8 @@ const startGame = function() {
     correctGuesses = [];
     lifeCounter = 7;
     underscores = [];
+    randomWord = '';
+    guessedLetter = '';
     
     // gets a random word from the array of possible words
     randomWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
@@ -99,40 +109,17 @@ const startGame = function() {
         return underscores;
     })
     console.log(underscores);
+
+    // append the string of underscores to the page
+    guess.innerHTML = underscores.join(' ');
+    wordToGuessSection.appendChild(guess);
+
+    // append the lives counter to the page
+    lives.innerHTML = `You have ${lifeCounter} lives remaining.`;
+    livesSection.appendChild(lives);
 }
 
 startGame();
-
-// =============== MAYBE DON'T NEED THIS NOW THAT I'VE WRITTEN THE START GAME FUNCTION? =================
-
-// // gets a random word from the array of possible words
-// const randomWord  = wordOptions[Math.floor(Math.random() * wordOptions.length)];
-// console.log(randomWord);
-
-// // splits the randomly chosen word into an array of individual letters
-// const splitRandomWord = randomWord.split('');
-// console.log(splitRandomWord);
-
-// // replaces each letter in the split name array with underscores
-// const underscoreWord = splitRandomWord.forEach(() => {
-//     underscores.push('_');
-//     return underscores;
-// })
-// console.log(underscores);
-
-// ===============================================================================
-
-// append the string of underscores to the page
-const wordToGuessSection = document.getElementById('wordToGuess');
-let guess = document.createElement('p');
-guess.innerHTML = underscores.join(' ');
-wordToGuessSection.appendChild(guess);
-
-// append the lives counter to the page
-const livesSection = document.getElementById('lives');
-let lives = document.createElement('p');
-lives.innerHTML = `You have ${lifeCounter} lives remaining.`;
-livesSection.appendChild(lives);
 
 // =========== ATTEMPT TO ACCOUNT FOR SPACES IN THE WORD OPTIONS ==============
 
