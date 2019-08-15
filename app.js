@@ -1,15 +1,43 @@
-const wordOptionsHP = [
-    'harry potter',
-    'hermoine granger',
-    'ron weasley',
-    'rubeus hagrid',
-    'albus dumbledore',
-    'draco malfoy',
-    'neville longbottom',
-    'minerva mcgonagall'
-]
+// const harryPotterCharacters = [
+//     'harry potter',
+//     'hermoine granger',
+//     'ron weasley',
+//     'rubeus hagrid',
+//     'albus dumbledore',
+//     'draco malfoy',
+//     'neville longbottom',
+//     'minerva mcgonagall'
+// ]
 
 const wordOptions = [
+    'monopoly',
+    'scrabble',
+    'slinky',
+    'boggle',
+    'clue',
+    'hopscotch',
+    'risk',
+    'battleship',
+    'checkers',
+    'chess',
+    'clue',
+    'jenga',
+    'twister',
+    'operation',
+    'pictionary',
+    'poker',
+    'solitaire',
+    'minesweeper',
+    // 'connect four',
+    // 'trivial pursuit',
+    'yahtzee',
+    'scattergories',
+    // 'snakes and ladders',
+    // 'cards against humanity',
+    // 'hungry hungry hippos',
+]
+
+const nhlTeamNames = [
     // 'maple leafs',
     'canadiens',
     'oilers',
@@ -62,6 +90,49 @@ let guess = document.createElement('p');
 const livesSection = document.getElementById('lives');
 let lives = document.createElement('p');
 
+// variables for appending messages to the page
+const correctAnswer = document.getElementById('correctAnswer');
+const answer = document.createElement('p');
+
+// variable for displaying the results section upon completion of game
+const resultsSection = document.getElementById('results');
+
+// ================== TRYING TO SET UP CATEGORY SELECTIONS ==================
+
+// const categoryOption = document.getElementsByClassName('categoryOption');
+// const categoryDisplay = document.getElementById('categoryDisplay');
+
+// console.log(categoryOption);
+// console.log(categoryDisplay);
+
+// console.log(categoryOption[1].innerHTML);
+// console.log(categoryDisplay.innerHTML);
+
+// for (i = 0; i < categoryOption.length; i++) {
+//     categoryOption[i].addEventListener('click', () => {
+
+        // if (categoryOption[i].value === 'nhlTeamNames') {
+        //     nhlTeamNames.forEach((item) => {
+        //         wordOptions.push(item)
+        //     })
+        // } else if (categoryOption[i].value === 'funAndGames') {
+        //     funAndGames.forEach((item) => {
+        //         wordOptions.push(item)
+        //     })
+        // }
+
+        // categoryOption[i].forEach(() => {
+        //     wordOptions.push();
+        // })
+        // console.log(categoryOption[i]);
+
+        // categoryDisplay.innerHTML = categoryOption[i].innerHTML;
+        // startGame();
+//     })
+// }
+
+// ================================================================
+
 // get all the elements with a class name of "letterButton" in order to add event listener
 const letterButtons = document.getElementsByClassName('letterButton');
 
@@ -70,7 +141,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 // function that draws the hangman components on the canvas element
-const drawHangman = function () {
+const drawHangman = function() {
 
     ctx.lineWidth = '2';
 
@@ -207,7 +278,7 @@ const drawHangman = function () {
 // function to start (or restart) the game
 const startGame = function() {
 
-    // resets the global variables
+    // reset the global variables
     correctGuesses = [];
     lifeCounter = 7;
     underscores = [];
@@ -220,7 +291,13 @@ const startGame = function() {
     }
 
     // show the letter button container after it was hidden upon game completion
-    document.getElementById('letterButtonContainer').style.visibility = 'visible';
+    document.getElementById('letterButtonContainer').style.display = 'block';
+
+    // hide the results section
+    resultsSection.style.display = 'none';
+
+    // removes the game over message
+    answer.remove();
 
     // clears the canvas from the previous game
     ctx.beginPath();
@@ -253,14 +330,16 @@ const startGame = function() {
     livesSection.appendChild(lives);
 }
 
+// run the start game function
 startGame();
 
 // =========== ATTEMPT TO ACCOUNT FOR SPACES IN THE WORD OPTIONS ==============
 
 // const generateUnderscores = () => {
-//     for (let i = 0; i < randomWord.length; i++) {
-//         if (getRandomWord[i] === /\s/) {
+//     for (let i = 0; i < splitRandomWord.length; i++) {
+//         if (getRandomWord[i] === ' ') {
 //             underscores.push(' ');
+//             correctGuesses.push(' ');
 //         } else {
 //             underscores.push('_');
 //         }
@@ -297,20 +376,29 @@ const userGuess = function() {
     }
 
     if (correctGuesses.length === randomWord.length) {
-        setTimeout(function () {
-            alert('WOO, you win!')
-        }, 050);
-        document.getElementById('letterButtonContainer').style.visibility = 'hidden';
+
+        // hide the letter buttons
+        // document.getElementById('letterButtonContainer').style.visibility = 'hidden';
+        document.getElementById('letterButtonContainer').style.display = 'none';
+
+        // display results section
+        resultsSection.style.display = 'flex';
+
+        // display a congratulatory message telling the user they won the round
+        answer.innerHTML = `Nice one! You correctly guessed the word, and the stick man lives to see another day.`;
+        correctAnswer.appendChild(answer);
     }
 
     if (lifeCounter === 0) {
-        setTimeout(function () {
-            alert('You have lost. Try again?')
-        }, 050);
-        document.getElementById('letterButtonContainer').style.visibility = 'hidden';
+
+        // hide the letter buttons
+        // document.getElementById('letterButtonContainer').style.visibility = 'hidden';
+        document.getElementById('letterButtonContainer').style.display = 'none';
+
+        // display results section
+        resultsSection.style.display = 'flex';
         
-        const correctAnswer = document.getElementById('correctAnswer');
-        const answer = document.createElement('p');
+        // display a message telling the user they have lost, and what the answer was 
         answer.innerHTML = `Oh no, you lost! The correct answer was ${randomWord.toUpperCase()}.`;
         correctAnswer.appendChild(answer);
     }
@@ -322,10 +410,8 @@ for (let i = 0; i < letterButtons.length; i++) {
 
         // assign the value of the selected letter button to the guessedLetter variable
         guessedLetter = letterButtons[i].value;
-
         // disable the clicked button so that the user can't click it again
         letterButtons[i].disabled = true;
-
         // run the userGuess function
         userGuess();
 

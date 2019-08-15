@@ -9,18 +9,23 @@
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-    <header>
-        <div class="wrapper">
-            <h1>Hangman</h1>    
+    <!-- <header> -->
+        <!-- <div class="wrapper"> -->
+             
             <!-- <h2>You know the drill: Correctly guess the word one letter at a time, lest a poor stick figure be hanged as a result of your failure.</h2> -->
-        </div>
-    </header>
-    <body>
+        <!-- </div> -->
+    <!-- </header> -->
+    <main>
         <div class="wrapper">
+            <h1>Hangman</h1>
             <section class="gameArea">
+                <!-- <div class="categoryOptionSection">
+                    <button class="categoryOption" value="funAndGames">Fun and Games</button>
+                    <button class="categoryOption" value="nhlTeamNames">NHL Teams</button>
+                </div> -->
                 <div class="wordToGuess" id="wordToGuess">
-                    <h3>Category: <span></span></h3>
-                    <!-- word to be guessed shows up here -->
+                    <h3>Category: <span id="categoryDisplay">Fun and Games</span></h3>
+                    <!-- word to be guessed appended here -->
                 </div>
                 <div class="flexContainer">
                     <div class="letterButtonContainer" id="letterButtonContainer">
@@ -51,20 +56,20 @@
                         <button class="letterButton" value="y">Y</button>
                         <button class="letterButton" value="z">Z</button>
                     </div>
+                    <div class="results" id="results">
+                        <div class="resultsText">
+                            <div class="correctAnswer" id="correctAnswer"></div>
+                            <button id="playAgain">Play Again</button>
+                        </div>
+                    </div>
                     <div class="gameAreaRight">
                         <canvas id="canvas" width="300" height="300"></canvas>
-                        <div class="lives" id="lives">
-                            <!-- life counter displayed here -->
-                        </div>
+                        <div class="lives" id="lives"> <!-- life counter appended here --></div>
                     </div>
                 </div>
             </section>
-            <section class="results" id="results">
-                <div class="correctAnswer" id="correctAnswer"></div>
-                <button id="playAgain">Play Again</button>
-            </section>
         </div> <!-- closes wrapper -->
-    </body>
+    </main>
     <footer>
         <div class="wrapper">
             <p>&copy; 2019 by Julien Bigras</p>

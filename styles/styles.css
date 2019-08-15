@@ -258,7 +258,7 @@ a {
 }
 
 .wrapper {
-  width: 75%;
+  width: 80%;
   margin: 0 auto;
   max-width: 1440px;
 }
@@ -286,11 +286,18 @@ h1 {
 
 .wordToGuess {
   margin: 2.5% 0;
+  border: 1px solid black;
+  text-align: center;
+}
+
+.wordToGuess h3 {
+  margin: 1.5% 0;
 }
 
 .wordToGuess p {
+  margin-bottom: 1.5%;
   font-family: 'Roboto Mono';
-  font-size: 2rem;
+  font-size: 1.8rem;
   text-align: center;
   letter-spacing: 0rem;
 }
@@ -313,11 +320,37 @@ h1 {
 }
 
 .gameAreaRight canvas {
+  margin-top: 2%;
   border: 1px solid black;
 }
 
 .gameAreaRight p {
   margin: 2% 0;
+}
+
+.results {
+  display: none;
+  width: 50%;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.results .resultsText {
+  border: 1px solid black;
+}
+
+.results .resultsText p {
+  padding: 20px;
+  margin-bottom: 2%;
+}
+
+.results .resultsText button {
+  margin-bottom: 20px;
 }
 
 footer {
