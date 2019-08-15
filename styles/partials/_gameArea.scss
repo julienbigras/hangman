@@ -1,0 +1,30 @@
+.wordToGuess {
+    margin: 2.5% 0;
+    p {
+        font-family: 'Roboto Mono';
+        font-size: 2rem;
+        text-align: center;
+        letter-spacing: 0rem;
+    }
+}
+
+.flexContainer {
+    display: flex;
+}
+
+.letterButtonContainer {
+    width: 50%;
+    text-align: center;
+    margin-top: 5%;
+}
+
+.gameAreaRight {
+    width: 50%;
+    text-align: center;
+    canvas {
+        border: 1px solid black;
+    }
+    p {
+        margin: 2% 0;
+    }
+}

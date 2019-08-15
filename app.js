@@ -1,26 +1,3 @@
-// have an array of word options
-// possibly multiple arrays, should i choose to have different categories *STRETCH GOAL*
-// create a function that will choose a random word from the array
-// have this word appear on the page, but as a series of blank spaces
-
-// have the user be able to select letters by clicking on them
-// users should be able to type letters as well
-
-// write a function that will check whether or not the guessed letters are part of the word
-// if yes, have the letters appear
-// if no, add a strike to the strike counter
-
-// have something happen if all the letters are guessed correctly
-// something else will happen if the user gets too many strikes
-
-// have a button that will open a modal containing... not sure what? stretch goal maybe
-// have a button that will reset the game
-
-// possibly a button to have the user select different categories
-// category choice will affect which array of possible words the randomizer will select from
-
-// array of possible words - might change this if an api call is made
-// might also change if more categories are added later on
 const wordOptionsHP = [
     'harry potter',
     'hermoine granger',
@@ -85,6 +62,148 @@ let guess = document.createElement('p');
 const livesSection = document.getElementById('lives');
 let lives = document.createElement('p');
 
+// get all the elements with a class name of "letterButton" in order to add event listener
+const letterButtons = document.getElementsByClassName('letterButton');
+
+// variables for drawing on the canvas
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+// function that draws the hangman components on the canvas element
+const drawHangman = function () {
+
+    ctx.lineWidth = '2';
+
+    // vertical bar left
+    ctx.beginPath();
+    ctx.moveTo(50, 20);
+    ctx.lineTo(50, 270);
+    ctx.stroke();
+    // vertical bar right - short
+    ctx.beginPath();
+    ctx.moveTo(60, 20);
+    ctx.lineTo(60, 65);
+    ctx.stroke();
+    // vertical bar right - long
+    ctx.beginPath();
+    ctx.moveTo(60, 85);
+    ctx.lineTo(60, 270);
+    ctx.stroke();
+    // horizontal bar top
+    ctx.beginPath();
+    ctx.moveTo(50, 20);
+    ctx.lineTo(200, 20);
+    ctx.stroke();
+    // horizontal bar right
+    ctx.beginPath();
+    ctx.moveTo(200, 20);
+    ctx.lineTo(200, 30);
+    ctx.stroke();
+    // horizontal bar bottom - short
+    ctx.beginPath();
+    ctx.moveTo(60, 30);
+    ctx.lineTo(95, 30);
+    ctx.stroke();
+    // horizontal bar bottom - long
+    ctx.beginPath();
+    ctx.moveTo(115, 30);
+    ctx.lineTo(200, 30);
+    ctx.stroke();
+    // bottom
+    ctx.beginPath();
+    ctx.moveTo(20, 270);
+    ctx.lineTo(280, 270);
+    ctx.stroke();
+    // diagonal top
+    ctx.beginPath();
+    ctx.moveTo(50, 75);
+    ctx.lineTo(105, 20);
+    ctx.stroke();
+    // diagonal bottom
+    ctx.beginPath();
+    ctx.moveTo(60, 85);
+    ctx.lineTo(115, 30);
+    ctx.stroke();
+    // diagonal right
+    ctx.beginPath();
+    ctx.moveTo(105, 20);
+    ctx.lineTo(115, 30);
+    ctx.stroke();
+    // diagonal left
+    ctx.beginPath();
+    ctx.moveTo(50, 75);
+    ctx.lineTo(60, 85);
+    ctx.stroke();
+    // noose
+    ctx.beginPath();
+    ctx.moveTo(160, 30);
+    ctx.lineTo(160, 66);
+    ctx.stroke();
+
+    if (lifeCounter === 6) {
+        // man's head
+        ctx.beginPath();
+        ctx.arc(160, 90, 25, 0, 2 * Math.PI);
+        ctx.stroke();
+    } else if (lifeCounter === 5) {
+        // man's body
+        ctx.beginPath();
+        ctx.moveTo(160, 116);
+        ctx.lineTo(160, 180);
+        ctx.stroke();
+    } else if (lifeCounter === 4) {
+        // man's left arm
+        ctx.beginPath();
+        ctx.moveTo(160, 125);
+        ctx.lineTo(135, 150);
+        ctx.stroke();
+    } else if (lifeCounter === 3) {
+        // man's right arm
+        ctx.beginPath();
+        ctx.moveTo(160, 125);
+        ctx.lineTo(185, 150);
+        ctx.stroke();
+    } else if (lifeCounter === 2) {
+        // man's left leg
+        ctx.beginPath();
+        ctx.moveTo(160, 180);
+        ctx.lineTo(135, 220);
+        ctx.stroke();
+    } else if (lifeCounter === 1) {
+        // man's right leg
+        ctx.beginPath();
+        ctx.moveTo(160, 180);
+        ctx.lineTo(190, 220);
+        ctx.stroke();
+    } else if (lifeCounter === 0) {
+        // left eye - line 1
+        ctx.beginPath();
+        ctx.moveTo(149, 83);
+        ctx.lineTo(155, 89);
+        ctx.stroke();
+        // left eye - line 2
+        ctx.beginPath();
+        ctx.moveTo(149, 89);
+        ctx.lineTo(155, 83);
+        ctx.stroke();
+        // right eye - line 1
+        ctx.beginPath();
+        ctx.moveTo(166, 89);
+        ctx.lineTo(172, 83);
+        ctx.stroke();
+        // right eye - line 2
+        ctx.beginPath();
+        ctx.moveTo(166, 83);
+        ctx.lineTo(172, 89);
+        ctx.stroke();
+        // mouth
+        ctx.beginPath();
+        ctx.moveTo(151, 102);
+        ctx.lineTo(169, 102);
+        ctx.stroke();
+    }
+}
+
 // function to start (or restart) the game
 const startGame = function() {
 
@@ -94,16 +213,31 @@ const startGame = function() {
     underscores = [];
     randomWord = '';
     guessedLetter = '';
+
+    // loop over the letter buttons, and re-enable them if disabled from previous round
+    for (i = 0; i < letterButtons.length; i++) {
+        letterButtons[i].disabled = false;
+    }
+
+    // show the letter button container after it was hidden upon game completion
+    document.getElementById('letterButtonContainer').style.visibility = 'visible';
+
+    // clears the canvas from the previous game
+    ctx.beginPath();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // draw the necessary hangman parts to start the game
+    drawHangman();
     
-    // gets a random word from the array of possible words
+    // get a random word from the array of possible words
     randomWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
     console.log(randomWord);
 
-    // splits the randomly chosen word into an array of individual letters
+    // split the randomly chosen word into an array of individual letters
     const splitRandomWord = randomWord.split('');
     console.log(splitRandomWord);
 
-    // replaces each letter in the split name array with underscores
+    // replace each letter in the split name array with underscores
     const underscoreWord = splitRandomWord.forEach(() => {
         underscores.push('_');
         return underscores;
@@ -139,6 +273,8 @@ startGame();
 // take a guess from the user, and determine whether it is correct or not
 const userGuess = function() {
 
+    //loops over the letters of the word
+    // if the user's guess matches letters of the word, those letters get pushed to the correct guesses array
     for (let j = 0; j < randomWord.length; j++) {
         if (randomWord[j] === guessedLetter) {
             correctGuesses.push(randomWord[j])
@@ -148,10 +284,12 @@ const userGuess = function() {
     }
 
     // subtracts a life if the guessed letter is not found in the word
-    // appends the new life count to the page
     if (randomWord.indexOf(guessedLetter.toLowerCase()) === -1) {
+        // reduce the life count
         lifeCounter--;
+        // draw a new part of the hangman
         drawHangman();
+        // append the new life count to the page
         lives.innerHTML = `You have ${lifeCounter} lives remaining.`;
         if (lifeCounter === 1) {
             lives.innerHTML = `You only have ${lifeCounter} life remaining!`;
@@ -162,194 +300,48 @@ const userGuess = function() {
         setTimeout(function () {
             alert('WOO, you win!')
         }, 050);
-        document.getElementById('letterButtonContainer').style.display = 'none';
+        document.getElementById('letterButtonContainer').style.visibility = 'hidden';
     }
 
     if (lifeCounter === 0) {
         setTimeout(function () {
             alert('You have lost. Try again?')
         }, 050);
-        document.getElementById('letterButtonContainer').style.display = 'none';
+        document.getElementById('letterButtonContainer').style.visibility = 'hidden';
+        
+        const correctAnswer = document.getElementById('correctAnswer');
+        const answer = document.createElement('p');
+        answer.innerHTML = `Oh no, you lost! The correct answer was ${randomWord.toUpperCase()}.`;
+        correctAnswer.appendChild(answer);
     }
 }
-
-// get all the elements with a class name of "letterButton"
-const letterButtons = document.getElementsByClassName('letterButton');
 
 // loop over the "letterButtons" elements, and add an event listener to each one
 for (let i = 0; i < letterButtons.length; i++) {
     letterButtons[i].addEventListener('click', () => {
 
-        // assigns the value of the selected letter button to the guessedLetter variable
+        // assign the value of the selected letter button to the guessedLetter variable
         guessedLetter = letterButtons[i].value;
 
         // disable the clicked button so that the user can't click it again
         letterButtons[i].disabled = true;
 
-        // runs the userGuess function
+        // run the userGuess function
         userGuess();
 
         console.log(guessedLetter);
         console.log(correctGuesses);
-        console.log(lifeCounter);
         console.log(underscores);
 
     })
 }
 
-const drawHangman = function() {
-
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
-    ctx.lineWidth=  '2';
-
-    // vertical bar left
-    ctx.beginPath();
-    ctx.moveTo(50, 20);
-    ctx.lineTo(50, 180);
-    ctx.stroke();
-    
-    // vertical bar right - short
-    ctx.beginPath();
-    ctx.moveTo(60, 20);
-    ctx.lineTo(60, 50);
-    ctx.stroke();
-    
-    // vertical bar right - long
-    ctx.beginPath();
-    ctx.moveTo(60, 70);
-    ctx.lineTo(60, 180);
-    ctx.stroke();
-
-    // horizontal bar top
-    ctx.beginPath();
-    ctx.moveTo(50, 20);
-    ctx.lineTo(130, 20);
-    ctx.stroke();
-
-    // horizontal bar right
-    ctx.beginPath();
-    ctx.moveTo(130, 20);
-    ctx.lineTo(130, 30);
-    ctx.stroke();
-
-    // horizontal bar bottom - short
-    ctx.beginPath();
-    ctx.moveTo(60, 30);
-    ctx.lineTo(80, 30);
-    ctx.stroke();
-
-    // horizontal bar bottom - long
-    ctx.beginPath();
-    ctx.moveTo(100, 30);
-    ctx.lineTo(130, 30);
-    ctx.stroke();
-
-    // bottom
-    ctx.beginPath();
-    ctx.moveTo(20, 180);
-    ctx.lineTo(170, 180);
-    ctx.stroke();
-
-    // diagonal top
-    ctx.beginPath();
-    ctx.moveTo(50, 60);
-    ctx.lineTo(90, 20);
-    ctx.stroke();
-
-    // diagonal bottom
-    ctx.beginPath();
-    ctx.moveTo(60, 70);
-    ctx.lineTo(100, 30);
-    ctx.stroke();
-
-    // diagonal right
-    ctx.beginPath();
-    ctx.moveTo(90, 20);
-    ctx.lineTo(100, 30);
-    ctx.stroke();
-
-    // diagonal left
-    ctx.beginPath();
-    ctx.moveTo(50, 60);
-    ctx.lineTo(60, 70);
-    ctx.stroke();
-
-    // noose
-    ctx.beginPath();
-    ctx.moveTo(115, 30);
-    ctx.lineTo(115, 52);
-    ctx.stroke();
-
-    if (lifeCounter === 6) {
-        // man's head
-        ctx.beginPath();
-        ctx.arc(115, 70, 18, 0, 2 * Math.PI);
-        ctx.stroke();
-    } else if (lifeCounter === 5) {
-        // man's body
-        ctx.beginPath();
-        ctx.moveTo(115, 88);
-        ctx.lineTo(115, 140);
-        ctx.stroke();
-    } else if (lifeCounter === 4) {
-        // man's left arm
-        ctx.beginPath();
-        ctx.moveTo(115, 100);
-        ctx.lineTo(95, 125);
-        ctx.stroke();
-    } else if (lifeCounter === 3) {
-        // man's right arm
-        ctx.beginPath();
-        ctx.moveTo(115, 100);
-        ctx.lineTo(135, 125);
-        ctx.stroke();
-    } else if (lifeCounter === 2) {
-        // man's left leg
-        ctx.beginPath();
-        ctx.moveTo(115, 140);
-        ctx.lineTo(90, 165);
-        ctx.stroke();
-    } else if (lifeCounter === 1) {
-        // man's right leg
-        ctx.beginPath();
-        ctx.moveTo(115, 140);
-        ctx.lineTo(140, 165);
-        ctx.stroke();
-    } else if (lifeCounter === 0) {
-        // left eye - line 1
-        ctx.beginPath();
-        ctx.moveTo(106, 63);
-        ctx.lineTo(112, 69);
-        ctx.stroke();
-
-        // left eye - line 2
-        ctx.beginPath();
-        ctx.moveTo(106, 69);
-        ctx.lineTo(112, 63);
-        ctx.stroke();
-
-        // right eye - line 1
-        ctx.beginPath();
-        ctx.moveTo(118, 69);
-        ctx.lineTo(124, 63);
-        ctx.stroke();
-
-        // right eye - line 2
-        ctx.beginPath();
-        ctx.moveTo(118, 63);
-        ctx.lineTo(124, 69);
-        ctx.stroke();
-
-        // mouth
-        ctx.beginPath();
-        ctx.moveTo(106, 77);
-        ctx.lineTo(124, 77);
-        ctx.stroke();
-    }
-}
-
-drawHangman();
+// get the element with the id of playAgain
+const playAgain = document.getElementById('playAgain');
+// add an event listener to restart the game
+playAgain.addEventListener('click', () => {
+    startGame();
+});
 
 // API CALL - THIS WILL BE A STRETCH GOAL 
 

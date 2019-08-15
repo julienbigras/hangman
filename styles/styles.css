@@ -258,32 +258,75 @@ a {
 }
 
 .wrapper {
-  width: 80%;
+  width: 75%;
   margin: 0 auto;
   max-width: 1440px;
 }
 
-.wordToGuess {
-  margin: 5% 0;
-}
-
-.letterButtonContainer {
-  margin-top: 5%;
-}
-
-canvas {
-  border: 1px solid black;
-}
-
-button {
+.letterButton {
   background: white;
   color: black;
-  font-size: 2rem;
+  font-size: 1.8rem;
   width: 60px;
 }
 
 button:disabled {
   background: black;
   color: white;
+}
+
+h1 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 1.5% 0 2%;
+  letter-spacing: 0.5rem;
+}
+
+.wordToGuess {
+  margin: 2.5% 0;
+}
+
+.wordToGuess p {
+  font-family: 'Roboto Mono';
+  font-size: 2rem;
+  text-align: center;
+  letter-spacing: 0rem;
+}
+
+.flexContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.letterButtonContainer {
+  width: 50%;
+  text-align: center;
+  margin-top: 5%;
+}
+
+.gameAreaRight {
+  width: 50%;
+  text-align: center;
+}
+
+.gameAreaRight canvas {
+  border: 1px solid black;
+}
+
+.gameAreaRight p {
+  margin: 2% 0;
+}
+
+footer {
+  background: black;
+}
+
+footer p {
+  color: white;
+  text-align: center;
+  padding: 5px 0;
 }
 /*# sourceMappingURL=styles.css.map */

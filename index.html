@@ -5,55 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hangman</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
     <header>
         <div class="wrapper">
             <h1>Hangman</h1>    
-            <h2>Can you correctly guess the word before running out of lives?</h2>
+            <!-- <h2>You know the drill: Correctly guess the word one letter at a time, lest a poor stick figure be hanged as a result of your failure.</h2> -->
         </div>
     </header>
     <body>
         <div class="wrapper">
             <section class="gameArea">
                 <div class="wordToGuess" id="wordToGuess">
+                    <h3>Category: <span></span></h3>
                     <!-- word to be guessed shows up here -->
                 </div>
-                <canvas id="canvas" width="200" height="200"></canvas>
-                <div class="lives" id="lives">
-                    <!-- life counter displayed here -->
+                <div class="flexContainer">
+                    <div class="letterButtonContainer" id="letterButtonContainer">
+                        <button class="letterButton" value="a">A</button>
+                        <button class="letterButton" value="b">B</button>
+                        <button class="letterButton" value="c">C</button>
+                        <button class="letterButton" value="d">D</button>
+                        <button class="letterButton" value="e">E</button>
+                        <button class="letterButton" value="f">F</button>
+                        <button class="letterButton" value="g">G</button>
+                        <button class="letterButton" value="h">H</button>
+                        <button class="letterButton" value="i">I</button>
+                        <button class="letterButton" value="j">J</button>
+                        <button class="letterButton" value="k">K</button>
+                        <button class="letterButton" value="l">L</button>
+                        <button class="letterButton" value="m">M</button>
+                        <button class="letterButton" value="n">N</button>
+                        <button class="letterButton" value="o">O</button>
+                        <button class="letterButton" value="p">P</button>
+                        <button class="letterButton" value="q">Q</button>
+                        <button class="letterButton" value="r">R</button>
+                        <button class="letterButton" value="s">S</button>
+                        <button class="letterButton" value="t">T</button>
+                        <button class="letterButton" value="u">U</button>
+                        <button class="letterButton" value="v">V</button>
+                        <button class="letterButton" value="w">W</button>
+                        <button class="letterButton" value="x">X</button>
+                        <button class="letterButton" value="y">Y</button>
+                        <button class="letterButton" value="z">Z</button>
+                    </div>
+                    <div class="gameAreaRight">
+                        <canvas id="canvas" width="300" height="300"></canvas>
+                        <div class="lives" id="lives">
+                            <!-- life counter displayed here -->
+                        </div>
+                    </div>
                 </div>
             </section>
-            <section class="letterButtonContainer" id="letterButtonContainer">
-                <button class="letterButton" value="a">A</button>
-                <button class="letterButton" value="b">B</button>
-                <button class="letterButton" value="c">C</button>
-                <button class="letterButton" value="d">D</button>
-                <button class="letterButton" value="e">E</button>
-                <button class="letterButton" value="f">F</button>
-                <button class="letterButton" value="g">G</button>
-                <button class="letterButton" value="h">H</button>
-                <button class="letterButton" value="i">I</button>
-                <button class="letterButton" value="j">J</button>
-                <button class="letterButton" value="k">K</button>
-                <button class="letterButton" value="l">L</button>
-                <button class="letterButton" value="m">M</button>
-                <button class="letterButton" value="n">N</button>
-                <button class="letterButton" value="o">O</button>
-                <button class="letterButton" value="p">P</button>
-                <button class="letterButton" value="q">Q</button>
-                <button class="letterButton" value="r">R</button>
-                <button class="letterButton" value="s">S</button>
-                <button class="letterButton" value="t">T</button>
-                <button class="letterButton" value="u">U</button>
-                <button class="letterButton" value="v">V</button>
-                <button class="letterButton" value="w">W</button>
-                <button class="letterButton" value="x">X</button>
-                <button class="letterButton" value="y">Y</button>
-                <button class="letterButton" value="z">Z</button>
+            <section class="results" id="results">
+                <div class="correctAnswer" id="correctAnswer"></div>
+                <button id="playAgain">Play Again</button>
             </section>
-        </div>
+        </div> <!-- closes wrapper -->
     </body>
     <footer>
         <div class="wrapper">
