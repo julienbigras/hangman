@@ -353,6 +353,8 @@ h1 {
 
 .results .resultsText button {
   margin-bottom: 20px;
+  border: 2px solid black;
+  background: white;
 }
 
 footer {

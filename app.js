@@ -28,6 +28,7 @@ const wordOptions = [
     'poker',
     'solitaire',
     'minesweeper',
+    'mastermind',
     // 'connect four',
     // 'trivial pursuit',
     'yahtzee',
@@ -83,7 +84,7 @@ let randomWord = '';
 let guessedLetter = '';
 
 // variables for appending the word to guess to the page
-const wordToGuessSection = document.getElementById('wordToGuess');
+const wordToGuess = document.getElementById('wordToGuess');
 let guess = document.createElement('p');
 
 // variables for appending the life counter to the page
@@ -133,7 +134,7 @@ const resultsSection = document.getElementById('results');
 
 // ================================================================
 
-// get all the elements with a class name of "letterButton" in order to add event listener
+// get all the elements with a class name of "letterButton" in order to add event listeners
 const letterButtons = document.getElementsByClassName('letterButton');
 
 // variables for drawing on the canvas
@@ -323,7 +324,7 @@ const startGame = function() {
 
     // append the string of underscores to the page
     guess.innerHTML = underscores.join(' ');
-    wordToGuessSection.appendChild(guess);
+    wordToGuess.appendChild(guess);
 
     // append the lives counter to the page
     lives.innerHTML = `You have ${lifeCounter} lives remaining.`;
@@ -404,7 +405,29 @@ const userGuess = function() {
     }
 }
 
-// loop over the "letterButtons" elements, and add an event listener to each one
+// add a keypress event listener
+document.addEventListener('keypress', (e) => {
+    // save the 'key' of the key pressed to a variable
+    const keyPressed = e.key;
+    // loop over the letter buttons
+    for (let i = 0; i < letterButtons.length; i++) {
+        // if the key pressed is equal to the value of the letter button
+        if (letterButtons[i].value === keyPressed) {
+            // assign the value of the selected letter button to the guessedLetter variable
+            guessedLetter = letterButtons[i].value;
+            // disable the clicked button so that the user can't click it again
+            letterButtons[i].disabled = true;
+            // run the userGuess function
+            userGuess();
+
+            console.log(guessedLetter);
+            console.log(correctGuesses);
+            console.log(underscores);
+        }
+    }
+})
+
+// loop over the "letterButtons" elements, and add the click event listener to each one
 for (let i = 0; i < letterButtons.length; i++) {
     letterButtons[i].addEventListener('click', () => {
 
