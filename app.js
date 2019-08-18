@@ -8,8 +8,9 @@
 //     'neville longbottom',
 //     'minerva mcgonagall'
 // ]
+const wordOptions = ['hello',];
 
-const wordOptions = [
+const funAndGames = [
     'monopoly',
     'scrabble',
     'slinky',
@@ -111,37 +112,41 @@ const lossCount = document.createElement('p');
 
 // ================== TRYING TO SET UP CATEGORY SELECTIONS ==================
 
-// const categoryOption = document.getElementsByClassName('categoryOption');
-// const categoryDisplay = document.getElementById('categoryDisplay');
+const categoryOption = document.getElementsByClassName('categoryOption');
+const categoryDisplay = document.getElementById('categoryDisplay');
 
-// console.log(categoryOption);
-// console.log(categoryDisplay);
+console.log("===========================================")
 
-// console.log(categoryOption[1].innerHTML);
-// console.log(categoryDisplay.innerHTML);
+console.log(categoryOption);
+console.log(categoryDisplay);
 
-// for (i = 0; i < categoryOption.length; i++) {
-//     categoryOption[i].addEventListener('click', () => {
+console.log(categoryOption[0].value);
+console.log(categoryOption[1].value);
+console.log(categoryDisplay.innerHTML);
 
-        // if (categoryOption[i].value === 'nhlTeamNames') {
-        //     nhlTeamNames.forEach((item) => {
-        //         wordOptions.push(item)
-        //     })
-        // } else if (categoryOption[i].value === 'funAndGames') {
-        //     funAndGames.forEach((item) => {
-        //         wordOptions.push(item)
-        //     })
-        // }
+for (let i = 0; i < categoryOption.length; i++) {
+    categoryOption[i].addEventListener('click', () => {
 
-        // categoryOption[i].forEach(() => {
-        //     wordOptions.push();
-        // })
-        // console.log(categoryOption[i]);
+        // assign the value of the selected category button to the categoryValue variable
+        categoryValue = categoryOption[i].value;
+        console.log(categoryValue);
 
-        // categoryDisplay.innerHTML = categoryOption[i].innerHTML;
-        // startGame();
-//     })
-// }
+        if (categoryValue === 'nhlTeamNames') {
+            nhlTeamNames.forEach((item) => {
+                wordOptions.push(item);
+            })
+            console.log(wordOptions);
+        } else if (categoryValue === 'funAndGames') {
+            funAndGames.forEach((item) => {
+                wordOptions.push(item);
+            })
+            console.log(wordOptions);
+        }
+
+    })
+}
+
+console.log("===========================================")
 
 // ================================================================
 
@@ -444,7 +449,6 @@ document.addEventListener('keypress', (e) => {
 
     // save the 'key' of the key pressed to a variable
     const keyPressed = e.key;
-    
     // push the guessedLetter to the key log array
     keyLog.push(guessedLetter)
     
