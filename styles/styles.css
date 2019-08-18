@@ -298,7 +298,7 @@ h1 {
 
 .wordToGuess p {
   margin-bottom: 1.5%;
-  font-family: 'Roboto Mono';
+  font-family: 'Roboto Mono', monospace;
   font-size: 1.8rem;
   text-align: center;
   letter-spacing: 0rem;

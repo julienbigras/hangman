@@ -82,6 +82,12 @@ let underscores = [];
 let randomWord = '';
 // the letter chosen by the user
 let guessedLetter = '';
+// the log of keys pressed by users
+let keyLog = [];
+// number of rounds won
+let roundsWon = 0;
+//number of rounds lost
+let roundsLost = 0;
 
 // variables for appending the word to guess to the page
 const wordToGuess = document.getElementById('wordToGuess');
@@ -97,6 +103,11 @@ const answer = document.createElement('p');
 
 // variable for displaying the results section upon completion of game
 const resultsSection = document.getElementById('results');
+
+// variabls for displaying the number of rounds won or lost by the user
+const roundsWonOrLost = document.getElementById('roundsWonOrLost');
+const winCount = document.createElement('p');
+const lossCount = document.createElement('p');
 
 // ================== TRYING TO SET UP CATEGORY SELECTIONS ==================
 
@@ -285,6 +296,7 @@ const startGame = function() {
     underscores = [];
     randomWord = '';
     guessedLetter = '';
+    keyLog = [];
 
     // loop over the letter buttons, and re-enable them if disabled from previous round
     for (i = 0; i < letterButtons.length; i++) {
@@ -329,6 +341,12 @@ const startGame = function() {
     // append the lives counter to the page
     lives.innerHTML = `You have ${lifeCounter} lives remaining.`;
     livesSection.appendChild(lives);
+
+    //append the rounds won and lost to the page
+    winCount.innerHTML = `Rounds Won: ${roundsWon}`;
+    lossCount.innerHTML = `Rounds Lost: ${roundsLost}`;
+    roundsWonOrLost.appendChild(winCount);
+    roundsWonOrLost.appendChild(lossCount);
 }
 
 // run the start game function
@@ -355,16 +373,23 @@ const userGuess = function() {
 
     //loops over the letters of the word
     // if the user's guess matches letters of the word, those letters get pushed to the correct guesses array
-    for (let j = 0; j < randomWord.length; j++) {
-        if (randomWord[j] === guessedLetter) {
-            correctGuesses.push(randomWord[j])
-            underscores[j] = randomWord[j];
+    for (let i = 0; i < randomWord.length; i++) {
+        if (randomWord[i] === guessedLetter) {
+            // if the guessedLetter already appears in the keyLog array, return
+            if (keyLog.indexOf(guessedLetter) >= 0) {
+                return
+                }
+            correctGuesses.push(randomWord[i])
+            underscores[i] = randomWord[i];
             guess.innerHTML = underscores.join(' ').toUpperCase();
         }
     }
 
     // subtracts a life if the guessed letter is not found in the word
     if (randomWord.indexOf(guessedLetter.toLowerCase()) === -1) {
+        if (keyLog.indexOf(guessedLetter) >= 0) {
+            return
+        }
         // reduce the life count
         lifeCounter--;
         // draw a new part of the hangman
@@ -388,6 +413,10 @@ const userGuess = function() {
         // display a congratulatory message telling the user they won the round
         answer.innerHTML = `Nice one! You correctly guessed the word, and the stick man lives to see another day.`;
         correctAnswer.appendChild(answer);
+
+        // update the rounds won count and append the new count to the page
+        roundsWon++;
+        winCount.innerHTML = `Rounds Won: ${roundsWon}`;
     }
 
     if (lifeCounter === 0) {
@@ -402,13 +431,23 @@ const userGuess = function() {
         // display a message telling the user they have lost, and what the answer was 
         answer.innerHTML = `Oh no, you lost! The correct answer was ${randomWord.toUpperCase()}.`;
         correctAnswer.appendChild(answer);
+
+        // update the rounds lost count and append the new count to the page
+        roundsLost++;
+        lossCount.innerHTML = `Rounds Lost: ${roundsLost}`;
+
     }
 }
 
 // add a keypress event listener
 document.addEventListener('keypress', (e) => {
+
     // save the 'key' of the key pressed to a variable
     const keyPressed = e.key;
+    
+    // push the guessedLetter to the key log array
+    keyLog.push(guessedLetter)
+    
     // loop over the letter buttons
     for (let i = 0; i < letterButtons.length; i++) {
         // if the key pressed is equal to the value of the letter button
