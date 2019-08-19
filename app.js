@@ -1,15 +1,3 @@
-// const harryPotterCharacters = [
-//     'harry potter',
-//     'hermoine granger',
-//     'ron weasley',
-//     'rubeus hagrid',
-//     'albus dumbledore',
-//     'draco malfoy',
-//     'neville longbottom',
-//     'minerva mcgonagall'
-// ]
-const wordOptions = ['hello',];
-
 const funAndGames = [
     'monopoly',
     'scrabble',
@@ -30,17 +18,19 @@ const funAndGames = [
     'solitaire',
     'minesweeper',
     'mastermind',
-    // 'connect four',
-    // 'trivial pursuit',
     'yahtzee',
     'scattergories',
+    'dominoes',
+    // 'guess who',
+    // 'go fish',
+    // 'connect four',
+    // 'trivial pursuit',
     // 'snakes and ladders',
     // 'cards against humanity',
     // 'hungry hungry hippos',
 ]
 
 const nhlTeamNames = [
-    // 'maple leafs',
     'canadiens',
     'oilers',
     'bruins',
@@ -50,29 +40,88 @@ const nhlTeamNames = [
     'blues',
     'blackhawks',
     'flames',
-    // 'red wings',
     'sharks',
     'devils',
     'sabres',
     'flyers',
     'avalanche',
     'islanders',
-    // 'golden knights',
     'lightning',
     'capitals',
     'jets',
     'senators',
     'hurricanes',
     'stars',
-    // 'blue jackets',
     'wild',
     'kings',
     'ducks',
     'predators',
     'coyotes',
     'panthers'
+    // 'maple leafs',
+    // 'red wings',
+    // 'golden knights',
+    // 'blue jackets',
 ]
 
+const countries = [
+    'afghanistan',
+    'bangladesh',
+    'belgium',
+    'belize',
+    'brazil',
+    'canada',
+    'cambodia',
+    'chile',
+    'china',
+    'cuba',
+    'denmark',
+    'ecuador',
+    'egypt',
+    'ethiopia',
+    'fiji',
+    'finland',
+    'france',
+    'greece',
+    'guatemala',
+    'haiti',
+    'honduras',
+    'hungary',
+    'iceland',
+    'india',
+    'indonesia',
+    'iraq',
+    'ireland',
+    'jamaica',
+    'japan',
+    'jordan',
+    'kenya',
+    'latvia',
+    'lebanon',
+    'lithuania',
+    'luxembourg',
+    'malaysia',
+    'mexico',
+    'nepal',
+    'netherlands',
+    'norway',
+    'oman',
+    'pakistan',
+    'philippines',
+    'portugal',
+    'russia',
+    'sweden',
+    'switzerland',
+    'syria',
+    'thailand',
+    'turkey',
+    'ukraine',
+    'yemen',
+    'zimbabwe'
+]
+
+// words from the selected category will be pushed to this array
+let wordOptions = [];
 // correct guesses will be pushed to this array
 let correctGuesses = [];
 // incorrect guesses reduce the amount of lives remaining
@@ -90,69 +139,30 @@ let roundsWon = 0;
 //number of rounds lost
 let roundsLost = 0;
 
+// variable for displaying the modal
+const modal = document.getElementById('modal');
+// variable for displaying the main game area
+const main = document.getElementById('main');
 // variables for appending the word to guess to the page
 const wordToGuess = document.getElementById('wordToGuess');
 let guess = document.createElement('p');
-
 // variables for appending the life counter to the page
 const livesSection = document.getElementById('lives');
 let lives = document.createElement('p');
-
 // variables for appending messages to the page
 const correctAnswer = document.getElementById('correctAnswer');
 const answer = document.createElement('p');
-
 // variable for displaying the results section upon completion of game
 const resultsSection = document.getElementById('results');
-
 // variabls for displaying the number of rounds won or lost by the user
 const roundsWonOrLost = document.getElementById('roundsWonOrLost');
 const winCount = document.createElement('p');
 const lossCount = document.createElement('p');
-
-// ================== TRYING TO SET UP CATEGORY SELECTIONS ==================
-
+// variables for the category selection process
 const categoryOption = document.getElementsByClassName('categoryOption');
 const categoryDisplay = document.getElementById('categoryDisplay');
-
-console.log("===========================================")
-
-console.log(categoryOption);
-console.log(categoryDisplay);
-
-console.log(categoryOption[0].value);
-console.log(categoryOption[1].value);
-console.log(categoryDisplay.innerHTML);
-
-for (let i = 0; i < categoryOption.length; i++) {
-    categoryOption[i].addEventListener('click', () => {
-
-        // assign the value of the selected category button to the categoryValue variable
-        categoryValue = categoryOption[i].value;
-        console.log(categoryValue);
-
-        if (categoryValue === 'nhlTeamNames') {
-            nhlTeamNames.forEach((item) => {
-                wordOptions.push(item);
-            })
-            console.log(wordOptions);
-        } else if (categoryValue === 'funAndGames') {
-            funAndGames.forEach((item) => {
-                wordOptions.push(item);
-            })
-            console.log(wordOptions);
-        }
-
-    })
-}
-
-console.log("===========================================")
-
-// ================================================================
-
 // get all the elements with a class name of "letterButton" in order to add event listeners
 const letterButtons = document.getElementsByClassName('letterButton');
-
 // variables for drawing on the canvas
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -294,68 +304,87 @@ const drawHangman = function() {
 
 // function to start (or restart) the game
 const startGame = function() {
-
     // reset the global variables
+    // wordOptions = [];
     correctGuesses = [];
     lifeCounter = 7;
     underscores = [];
     randomWord = '';
     guessedLetter = '';
     keyLog = [];
-
     // loop over the letter buttons, and re-enable them if disabled from previous round
     for (i = 0; i < letterButtons.length; i++) {
         letterButtons[i].disabled = false;
     }
-
     // show the letter button container after it was hidden upon game completion
     document.getElementById('letterButtonContainer').style.display = 'block';
-
     // hide the results section
     resultsSection.style.display = 'none';
-
     // removes the game over message
     answer.remove();
-
     // clears the canvas from the previous game
     ctx.beginPath();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     // draw the necessary hangman parts to start the game
     drawHangman();
-    
     // get a random word from the array of possible words
     randomWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
     console.log(randomWord);
-
     // split the randomly chosen word into an array of individual letters
     const splitRandomWord = randomWord.split('');
     console.log(splitRandomWord);
-
     // replace each letter in the split name array with underscores
     const underscoreWord = splitRandomWord.forEach(() => {
         underscores.push('_');
         return underscores;
     })
     console.log(underscores);
-
     // append the string of underscores to the page
     guess.innerHTML = underscores.join(' ');
     wordToGuess.appendChild(guess);
-
     // append the lives counter to the page
     lives.innerHTML = `You have ${lifeCounter} lives remaining.`;
     livesSection.appendChild(lives);
-
     //append the rounds won and lost to the page
     winCount.innerHTML = `Rounds Won: ${roundsWon}`;
     lossCount.innerHTML = `Rounds Lost: ${roundsLost}`;
     roundsWonOrLost.appendChild(winCount);
     roundsWonOrLost.appendChild(lossCount);
+
+    console.log(wordOptions);
 }
 
-// run the start game function
-startGame();
+// loop over the category option buttons, and add an event listener to each one
+for (let i = 0; i < categoryOption.length; i++) {
+    categoryOption[i].addEventListener('click', () => {
+
+        // assign the value of the selected category button to the categoryValue variable
+        categoryValue = categoryOption[i].value;
+
+        if (categoryValue === 'funAndGames') {
+            funAndGames.forEach((item) => {
+                wordOptions.push(item);
+            })
+        } else if (categoryValue === 'nhlTeamNames') {
+            nhlTeamNames.forEach((item) => {
+                wordOptions.push(item);
+            })
+        } else if (categoryValue === 'countries') {
+            countries.forEach((item) => {
+                wordOptions.push(item);
+            })
+        }
+        // display the name of the selected category on the page
+        categoryDisplay.innerHTML = categoryOption[i].innerHTML;
+
+        // hide the landing modal and display the main game area
+        modal.style.display = 'none';
+        main.style.display = "block"
+        // run the start game function
+        startGame();
+
+    })
+}
 
 // =========== ATTEMPT TO ACCOUNT FOR SPACES IN THE WORD OPTIONS ==============
 
@@ -375,7 +404,6 @@ startGame();
 
 // take a guess from the user, and determine whether it is correct or not
 const userGuess = function() {
-
     //loops over the letters of the word
     // if the user's guess matches letters of the word, those letters get pushed to the correct guesses array
     for (let i = 0; i < randomWord.length; i++) {
@@ -407,51 +435,40 @@ const userGuess = function() {
     }
 
     if (correctGuesses.length === randomWord.length) {
-
         // hide the letter buttons
         // document.getElementById('letterButtonContainer').style.visibility = 'hidden';
         document.getElementById('letterButtonContainer').style.display = 'none';
-
         // display results section
         resultsSection.style.display = 'flex';
-
         // display a congratulatory message telling the user they won the round
         answer.innerHTML = `Nice one! You correctly guessed the word, and the stick man lives to see another day.`;
         correctAnswer.appendChild(answer);
-
         // update the rounds won count and append the new count to the page
         roundsWon++;
         winCount.innerHTML = `Rounds Won: ${roundsWon}`;
     }
 
     if (lifeCounter === 0) {
-
         // hide the letter buttons
         // document.getElementById('letterButtonContainer').style.visibility = 'hidden';
         document.getElementById('letterButtonContainer').style.display = 'none';
-
         // display results section
         resultsSection.style.display = 'flex';
-        
         // display a message telling the user they have lost, and what the answer was 
         answer.innerHTML = `Oh no, you lost! The correct answer was ${randomWord.toUpperCase()}.`;
         correctAnswer.appendChild(answer);
-
         // update the rounds lost count and append the new count to the page
         roundsLost++;
         lossCount.innerHTML = `Rounds Lost: ${roundsLost}`;
-
     }
 }
 
 // add a keypress event listener
 document.addEventListener('keypress', (e) => {
-
     // save the 'key' of the key pressed to a variable
     const keyPressed = e.key;
     // push the guessedLetter to the key log array
     keyLog.push(guessedLetter)
-    
     // loop over the letter buttons
     for (let i = 0; i < letterButtons.length; i++) {
         // if the key pressed is equal to the value of the letter button
@@ -473,7 +490,6 @@ document.addEventListener('keypress', (e) => {
 // loop over the "letterButtons" elements, and add the click event listener to each one
 for (let i = 0; i < letterButtons.length; i++) {
     letterButtons[i].addEventListener('click', () => {
-
         // assign the value of the selected letter button to the guessedLetter variable
         guessedLetter = letterButtons[i].value;
         // disable the clicked button so that the user can't click it again
@@ -484,7 +500,6 @@ for (let i = 0; i < letterButtons.length; i++) {
         console.log(guessedLetter);
         console.log(correctGuesses);
         console.log(underscores);
-
     })
 }
 
@@ -492,7 +507,11 @@ for (let i = 0; i < letterButtons.length; i++) {
 const playAgain = document.getElementById('playAgain');
 // add an event listener to restart the game
 playAgain.addEventListener('click', () => {
-    startGame();
+    // empty the word options array
+    wordOptions = [];
+    // hide the main game area and display the landing page
+    modal.style.display = 'block';
+    main.style.display = 'none';
 });
 
 // API CALL - THIS WILL BE A STRETCH GOAL 

@@ -1,8 +1,6 @@
-.letterButton {
+button {
     background: white;
     color: black;
-    font-size: 1.8rem;
-    width: 60px;
     border: 2px solid black;
     margin-bottom: 5px;
 }
@@ -10,4 +8,9 @@
 button:disabled {
     background: black;
     color: white
+}
+
+.letterButton {
+    width: 60px;
+    font-size: 1.8rem;
 }

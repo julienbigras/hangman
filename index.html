@@ -9,22 +9,26 @@
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-    <!-- <header> -->
-        <!-- <div class="wrapper"> -->
-             
-            <!-- <h2>You know the drill: Correctly guess the word one letter at a time, lest a poor stick figure be hanged as a result of your failure.</h2> -->
-        <!-- </div> -->
-    <!-- </header> -->
-    <main>
+    <header class="modal" id="modal">
+        <div class="wrapper">
+            <div class="headerFlexContainer">
+                <h2>Welcome to Hangman!</h2>
+                <p>You know the drill: Correctly guess the word one letter at a time, lest a poor stick figure be hanged as a result of your failure.</p>
+                <div class="categoryOptionSection">
+                    <h3>Choose Your Category:</h3>
+                    <button class="categoryOption" value="funAndGames">Fun and Games</button>
+                    <button class="categoryOption" value="nhlTeamNames">NHL Teams</button>
+                    <button class="categoryOption" value="countries">Countries</button>
+                </div>
+            </div> <!-- closes headerFlexContainer -->
+        </div> <!-- closes wrapper -->
+    </header>
+    <main id="main">
         <div class="wrapper">
             <h1>Hangman</h1>
             <section class="gameArea">
-                <div class="categoryOptionSection">
-                    <button class="categoryOption" value="funAndGames">Fun and Games</button>
-                    <button class="categoryOption" value="nhlTeamNames">NHL Teams</button>
-                </div>
                 <div class="wordToGuess" id="wordToGuess">
-                    <h3>Category: <span id="categoryDisplay">Fun and Games</span></h3>
+                    <h3>Category: <span id="categoryDisplay"></span></h3>
                     <!-- word to be guessed appended here -->
                 </div>
                 <div class="flexContainer">
@@ -64,7 +68,7 @@
                     </div>
                     <div class="gameAreaRight">
                         <canvas id="canvas" width="300" height="300"></canvas>
-                        <div class="lives" id="lives"> <!-- life counter appended here --></div>
+                        <div class="lives" id="lives"><!-- life counter appended here --></div>
                         <div class="roundsWonOrLost" id="roundsWonOrLost"></div>
                     </div>
                 </div>
