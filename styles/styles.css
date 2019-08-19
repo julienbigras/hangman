@@ -236,7 +236,8 @@ ul,
 li,
 a,
 label,
-textarea {
+textarea,
+span {
   font-family: "Raleway";
 }
 
@@ -301,12 +302,12 @@ h1 {
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
-  margin: 1.5% 0 2%;
+  margin: 1.5% 0 1.5%;
   letter-spacing: 0.5rem;
 }
 
 .wordToGuess {
-  margin: 2.5% 0;
+  margin: 2% 0;
   border: 1px solid black;
   text-align: center;
 }
@@ -316,11 +317,11 @@ h1 {
 }
 
 .wordToGuess p {
-  margin-bottom: 1.5%;
+  margin-bottom: 1.2%;
   font-family: 'Roboto Mono', monospace;
   font-size: 1.8rem;
   text-align: center;
-  letter-spacing: 0rem;
+  letter-spacing: 1rem;
 }
 
 .flexContainer {
@@ -342,10 +343,15 @@ h1 {
 
 .gameAreaRight canvas {
   margin-top: 2%;
+  border: 1px solid black;
 }
 
 .gameAreaRight p {
   margin: 2% 0;
+}
+
+.gameAreaRight .roundsWonOrLost span {
+  margin-right: 10px;
 }
 
 .results {

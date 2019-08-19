@@ -21,13 +21,13 @@ const funAndGames = [
     'yahtzee',
     'scattergories',
     'dominoes',
-    // 'guess who',
-    // 'go fish',
-    // 'connect four',
-    // 'trivial pursuit',
-    // 'snakes and ladders',
-    // 'cards against humanity',
-    // 'hungry hungry hippos',
+    'guess who',
+    'go fish',
+    'connect four',
+    'trivial pursuit',
+    'snakes and ladders',
+    'cards against humanity',
+    'hungry hungry hippos',
 ]
 
 const nhlTeamNames = [
@@ -57,24 +57,27 @@ const nhlTeamNames = [
     'ducks',
     'predators',
     'coyotes',
-    'panthers'
-    // 'maple leafs',
-    // 'red wings',
-    // 'golden knights',
-    // 'blue jackets',
+    'panthers',
+    'maple leafs',
+    'red wings',
+    'golden knights',
+    'blue jackets',
 ]
 
 const countries = [
     'afghanistan',
     'bangladesh',
+    'barbados',
     'belgium',
     'belize',
+    'bermuda',
     'brazil',
     'canada',
     'cambodia',
     'chile',
     'china',
     'cuba',
+    'czech republic',
     'denmark',
     'ecuador',
     'egypt',
@@ -90,6 +93,7 @@ const countries = [
     'iceland',
     'india',
     'indonesia',
+    'iran',
     'iraq',
     'ireland',
     'jamaica',
@@ -110,15 +114,113 @@ const countries = [
     'philippines',
     'portugal',
     'russia',
+    'south korea',
     'sweden',
     'switzerland',
     'syria',
     'thailand',
     'turkey',
     'ukraine',
+    'united kingdom',
+    'united states',
     'yemen',
     'zimbabwe'
 ]
+
+const rockBands = [
+    'tool',
+    'rolling stones',
+    'the beatles',
+    'guns n roses',
+    'led zeppelin',
+    'pink floyd',
+    'metallica',
+    'queen',
+    'black sabbath',
+    'rush',
+    'aerosmith',
+    'fleetwood mac',
+    'iron maiden',
+    'lynyrd skynyrd',
+    'eagles',
+    'the doors',
+    'slipknot',
+    'foo fighters',
+    'deep purple',
+    'green day',
+    'pearl jam',
+    'nirvana',
+    'the who',
+    'oasis',
+    'def leppard',
+    'grateful dead',
+    'bon jovi',
+    'coldplay',
+    'journey',
+    'offspring',
+    'arcade fire',
+    'the police',
+    'red hot chili peppers',
+    'nine inch nails',
+    'judas priest',
+    'kiss',
+    'talking heads',
+    'creedence clearwater revival',
+    'radiohead',
+    'cream',
+    'the kinks',
+    'the sex pistols',
+    'the white stripes',
+    'incubus',
+    'korn',
+    'third eye blind',
+    'alice in chains',
+    'smashing pumpkins',
+    'weezer',
+    'soundgarden',
+    'rage against the machine',
+    'no doubt',
+    'stone temple pilots',
+    'goo goo dolls',
+    'pantera',
+    'bush',
+]
+
+const pokemon = [];
+
+// api call for the names of the first 151 pokemon, to be pushed to the pokemon array
+for (i = 1; i <= 151; i++) {
+    const pokeUrl = `https://pokeapi.co/api/v2/pokemon/${[i]}/`
+
+    const getPokemon = fetch(pokeUrl)
+        .then(function (response) {
+            return response.json()
+        })
+        .then(function (data) {
+            pokemon.push(data.name);
+        })
+}
+
+const harryPotterCharacters = [];
+// harry potter api url
+const harryPotterUrl = `https://www.potterapi.com/v1/characters?key=$2a$10$9fGI3xnlgavFnJ9L3/HnN.ud3E7Kmlf4tfxGQ2zWppihnz5r3qBky`
+
+// api call for the complete list of harry potter characters
+const getHarryPotterCharacters = fetch(harryPotterUrl)
+    .then(function (response) {
+        return response.json()
+    })
+    .then(function (data) {
+        for (i = 0; i < data.length; i++) {
+            harryPotterCharacters.push(data[i].name.toLowerCase())
+        }
+    })
+
+// harryPotterCharacters.forEach(() => {
+
+// })
+
+console.log(harryPotterCharacters);
 
 // words from the selected category will be pushed to this array
 let wordOptions = [];
@@ -156,8 +258,8 @@ const answer = document.createElement('p');
 const resultsSection = document.getElementById('results');
 // variabls for displaying the number of rounds won or lost by the user
 const roundsWonOrLost = document.getElementById('roundsWonOrLost');
-const winCount = document.createElement('p');
-const lossCount = document.createElement('p');
+const winCount = document.createElement('span');
+const lossCount = document.createElement('span');
 // variables for the category selection process
 const categoryOption = document.getElementsByClassName('categoryOption');
 const categoryDisplay = document.getElementById('categoryDisplay');
@@ -334,13 +436,19 @@ const startGame = function() {
     const splitRandomWord = randomWord.split('');
     console.log(splitRandomWord);
     // replace each letter in the split name array with underscores
-    const underscoreWord = splitRandomWord.forEach(() => {
-        underscores.push('_');
+    const underscoreWord = splitRandomWord.forEach((item) => {
+        if (item === ' ') {
+            underscores.push(' ');
+            correctGuesses.push('*')
+        } else {
+            underscores.push('_');
+        }
         return underscores;
     })
     console.log(underscores);
+    console.log(correctGuesses);
     // append the string of underscores to the page
-    guess.innerHTML = underscores.join(' ');
+    guess.innerHTML = underscores.join('');
     wordToGuess.appendChild(guess);
     // append the lives counter to the page
     lives.innerHTML = `You have ${lifeCounter} lives remaining.`;
@@ -350,8 +458,6 @@ const startGame = function() {
     lossCount.innerHTML = `Rounds Lost: ${roundsLost}`;
     roundsWonOrLost.appendChild(winCount);
     roundsWonOrLost.appendChild(lossCount);
-
-    console.log(wordOptions);
 }
 
 // loop over the category option buttons, and add an event listener to each one
@@ -373,6 +479,18 @@ for (let i = 0; i < categoryOption.length; i++) {
             countries.forEach((item) => {
                 wordOptions.push(item);
             })
+        } else if (categoryValue === 'rockBands') {
+            rockBands.forEach((item) => {
+                wordOptions.push(item);
+            })
+        } else if (categoryValue === 'pokemon') {
+            pokemon.forEach((item) => {
+                wordOptions.push(item);
+            })
+        } else if (categoryValue === 'harryPotterCharacters') {
+            harryPotterCharacters.forEach((item) => {
+                wordOptions.push(item);
+            })
         }
         // display the name of the selected category on the page
         categoryDisplay.innerHTML = categoryOption[i].innerHTML;
@@ -386,22 +504,6 @@ for (let i = 0; i < categoryOption.length; i++) {
     })
 }
 
-// =========== ATTEMPT TO ACCOUNT FOR SPACES IN THE WORD OPTIONS ==============
-
-// const generateUnderscores = () => {
-//     for (let i = 0; i < splitRandomWord.length; i++) {
-//         if (getRandomWord[i] === ' ') {
-//             underscores.push(' ');
-//             correctGuesses.push(' ');
-//         } else {
-//             underscores.push('_');
-//         }
-//     return underscores;
-//     }
-// }
-
-// ============================================================================
-
 // take a guess from the user, and determine whether it is correct or not
 const userGuess = function() {
     //loops over the letters of the word
@@ -414,7 +516,7 @@ const userGuess = function() {
                 }
             correctGuesses.push(randomWord[i])
             underscores[i] = randomWord[i];
-            guess.innerHTML = underscores.join(' ').toUpperCase();
+            guess.innerHTML = underscores.join('').toUpperCase();
         }
     }
 
@@ -505,34 +607,19 @@ for (let i = 0; i < letterButtons.length; i++) {
 
 // get the element with the id of playAgain
 const playAgain = document.getElementById('playAgain');
-// add an event listener to restart the game
+
+// add an event listener to play again
 playAgain.addEventListener('click', () => {
+    startGame();
+});
+
+// get the element with the id of newCategory
+const newCategory = document.getElementById('newCategory');
+// add an event listener to restart the game
+newCategory.addEventListener('click', () => {
     // empty the word options array
     wordOptions = [];
     // hide the main game area and display the landing page
     modal.style.display = 'block';
     main.style.display = 'none';
 });
-
-// API CALL - THIS WILL BE A STRETCH GOAL 
-
-// const url = `https://www.potterapi.com/v1/characters?key=$2a$10$9fGI3xnlgavFnJ9L3/HnN.ud3E7Kmlf4tfxGQ2zWppihnz5r3qBky`
-// const characterNames = [];
-
-// const getCharacters = fetch(url)
-//     .then(response => response.json())
-//     .then(data => console.log(data))
-
-// const getCharacters = fetch(url)
-//     .then(function(response) {
-//         return response.json()
-//     })
-//     .then(function(data) {
-//         console.log(data);
-//         const names = data.forEach(function() {
-//             return data.name;
-//         })
-//         characterNames.push(names);
-//     })
-
-//     console.log(characterNames)

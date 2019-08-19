@@ -7,23 +7,23 @@ h1 {
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
-    margin: 1.5% 0 2%;
+    margin: 1.5% 0 1.5%;
     letter-spacing: 0.5rem;
 }
 
 .wordToGuess {
-    margin: 2.5% 0;
+    margin: 2% 0;
     border: 1px solid black;
     text-align: center;
     h3 {
         margin: 1.5% 0;
     }
     p {
-        margin-bottom: 1.5%;
+        margin-bottom: 1.2%;
         font-family: 'Roboto Mono', monospace;
         font-size: 1.8rem;
         text-align: center;
-        letter-spacing: 0rem;
+        letter-spacing: 1rem;
     }
 }
 
@@ -42,10 +42,13 @@ h1 {
     text-align: center;
     canvas {
         margin-top: 2%;
-        // border: 1px solid black;
+        border: 1px solid black;
     }
     p {
         margin: 2% 0;
+    }
+    .roundsWonOrLost span {
+        margin-right: 10px;
     }
 }
 
