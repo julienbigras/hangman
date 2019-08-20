@@ -293,7 +293,10 @@ const movies = [
     'the terminator',
     'the usual suspects',
     'the wolf of wall street',
-    'zodiac'
+    'zodiac',
+    'the sandlot',
+    'the land before time',
+    'aladdin',
 ]
 
 // words from the selected category will be pushed to this array
@@ -646,7 +649,7 @@ const userGuess = function() {
 // add a keypress event listener
 document.addEventListener('keypress', (e) => {
     // save the 'key' of the key pressed to a variable
-    const keyPressed = e.key;
+    const keyPressed = e.key.toLowerCase();
     // push the guessedLetter to the key log array
     keyLog.push(guessedLetter)
     // loop over the letter buttons

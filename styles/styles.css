@@ -281,16 +281,46 @@ button:disabled {
   font-size: 1.8rem;
 }
 
-header {
+.headerFlexContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 1.5% 0 1.5%;
+  letter-spacing: 0.3rem;
+  margin-bottom: 2%;
+}
+
+.categoryOptionSection {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+.categoryOptionSection .categoryOption {
+  width: 50%;
+  padding: 15px 0;
 }
 
 main {
@@ -303,7 +333,7 @@ h1 {
   text-align: center;
   text-transform: uppercase;
   margin: 1.5% 0 1.5%;
-  letter-spacing: 0.5rem;
+  letter-spacing: 0.3rem;
 }
 
 .wordToGuess {
@@ -321,7 +351,7 @@ h1 {
   font-family: 'Roboto Mono', monospace;
   font-size: 1.8rem;
   text-align: center;
-  letter-spacing: 1rem;
+  letter-spacing: 0.8rem;
 }
 
 .flexContainer {

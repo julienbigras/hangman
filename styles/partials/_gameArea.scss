@@ -3,12 +3,7 @@ main {
 }
 
 h1 {
-    font-size: 2.2rem;
-    font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
-    margin: 1.5% 0 1.5%;
-    letter-spacing: 0.5rem;
+ @include fontSize(2.2rem);
 }
 
 .wordToGuess {
@@ -23,7 +18,7 @@ h1 {
         font-family: 'Roboto Mono', monospace;
         font-size: 1.8rem;
         text-align: center;
-        letter-spacing: 1rem;
+        letter-spacing: 0.8rem;
     }
 }
 
