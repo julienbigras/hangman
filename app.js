@@ -9,6 +9,13 @@ const funAndGames = [
     'battleship',
     'checkers',
     'chess',
+    'uno',
+    'crazy eights',
+    'war',
+    'blackjack',
+    'euchre',
+    'cribbage',
+    'old maid',
     'clue',
     'jenga',
     'twister',
@@ -145,6 +152,7 @@ const rockBands = [
     'eagles',
     'the doors',
     'slipknot',
+    'system of a down',
     'foo fighters',
     'deep purple',
     'green day',
@@ -173,6 +181,9 @@ const rockBands = [
     'the white stripes',
     'incubus',
     'korn',
+    'finger eleven',
+    'sloan',
+    'matthew good band',
     'third eye blind',
     'alice in chains',
     'smashing pumpkins',
@@ -196,8 +207,8 @@ for (i = 1; i <= 151; i++) {
         .then(function (response) {
             return response.json()
         })
-        .then(function (data) {
-            pokemon.push(data.name);
+        .then(function(data) {
+            pokemon.push(data.name.replace(/-/, ' '));
         })
 }
 
@@ -212,15 +223,78 @@ const getHarryPotterCharacters = fetch(harryPotterUrl)
     })
     .then(function (data) {
         for (i = 0; i < data.length; i++) {
-            harryPotterCharacters.push(data[i].name.toLowerCase())
+            // push the character names to the array, changing them to lower case, and getting rid of any characters that aren't letters or spaces
+            harryPotterCharacters.push(data[i].name.toLowerCase().replace(/[^a-z\s]/g, ''));
         }
     })
 
-// harryPotterCharacters.forEach(() => {
-
-// })
-
-console.log(harryPotterCharacters);
+const movies = [
+    'the godfather',
+    'citizen kane',
+    'star wars',
+    'casablanca',
+    'the dark knight',
+    'pulp fiction',
+    'apocalypse now',
+    'jaws',
+    'psycho',
+    'schindlers list',
+    'the shawshank redemption',
+    'titanic',
+    'goodfellas',
+    'forrest gump',
+    'the silence of the lambs',
+    'rocky',
+    'the wizard of oz',
+    'jurassic park',
+    'the matrix',
+    'the lion king',
+    'fight club',
+    'good will hunting',
+    'the graduate',
+    'the green mile',
+    'fargo',
+    'the italian job',
+    'the exorcist',
+    'braveheart',
+    'gladiator',
+    'a clockwork orange',
+    'saving private ryan',
+    'raiders of the lost ark',
+    'gone with the wind',
+    'raging bull',
+    'avengers endgame',
+    'black panther',
+    'iron man',
+    'the departed',
+    'american beauty',
+    'reservoir dogs',
+    'kill bill',
+    'american psycho',
+    'alien',
+    'back to the future',
+    'batman',
+    'blade runner',
+    'there will be blood',
+    'carrie',
+    'a nightmare on elm street',
+    'dawn of the dead',
+    'inception',
+    'edward scissorhands',
+    'full metal jacket',
+    'ghostbusters',
+    'grease',
+    'halloween',
+    'scarface',
+    'scream',
+    'the shining',
+    'the sixth sense',
+    'taxi driver',
+    'the terminator',
+    'the usual suspects',
+    'the wolf of wall street',
+    'zodiac'
+]
 
 // words from the selected category will be pushed to this array
 let wordOptions = [];
@@ -276,130 +350,130 @@ const drawHangman = function() {
 
     // vertical bar left
     ctx.beginPath();
-    ctx.moveTo(50, 20);
-    ctx.lineTo(50, 270);
+    ctx.moveTo(50, 10);
+    ctx.lineTo(50, 260);
     ctx.stroke();
     // vertical bar right - short
     ctx.beginPath();
-    ctx.moveTo(60, 20);
-    ctx.lineTo(60, 65);
+    ctx.moveTo(60, 10);
+    ctx.lineTo(60, 55);
     ctx.stroke();
     // vertical bar right - long
     ctx.beginPath();
-    ctx.moveTo(60, 85);
-    ctx.lineTo(60, 270);
+    ctx.moveTo(60, 75);
+    ctx.lineTo(60, 260);
     ctx.stroke();
     // horizontal bar top
     ctx.beginPath();
-    ctx.moveTo(50, 20);
-    ctx.lineTo(200, 20);
+    ctx.moveTo(50, 10);
+    ctx.lineTo(200, 10);
     ctx.stroke();
     // horizontal bar right
     ctx.beginPath();
-    ctx.moveTo(200, 20);
-    ctx.lineTo(200, 30);
+    ctx.moveTo(200, 10);
+    ctx.lineTo(200, 20);
     ctx.stroke();
     // horizontal bar bottom - short
     ctx.beginPath();
-    ctx.moveTo(60, 30);
-    ctx.lineTo(95, 30);
+    ctx.moveTo(60, 20);
+    ctx.lineTo(95, 20);
     ctx.stroke();
     // horizontal bar bottom - long
     ctx.beginPath();
-    ctx.moveTo(115, 30);
-    ctx.lineTo(200, 30);
+    ctx.moveTo(115, 20);
+    ctx.lineTo(200, 20);
     ctx.stroke();
     // bottom
     ctx.beginPath();
-    ctx.moveTo(20, 270);
-    ctx.lineTo(280, 270);
+    ctx.moveTo(20, 260);
+    ctx.lineTo(280, 260);
     ctx.stroke();
     // diagonal top
     ctx.beginPath();
-    ctx.moveTo(50, 75);
-    ctx.lineTo(105, 20);
+    ctx.moveTo(50, 65);
+    ctx.lineTo(105, 10);
     ctx.stroke();
     // diagonal bottom
     ctx.beginPath();
-    ctx.moveTo(60, 85);
-    ctx.lineTo(115, 30);
+    ctx.moveTo(60, 75);
+    ctx.lineTo(115, 20);
     ctx.stroke();
     // diagonal right
     ctx.beginPath();
-    ctx.moveTo(105, 20);
-    ctx.lineTo(115, 30);
+    ctx.moveTo(105, 10);
+    ctx.lineTo(115, 20);
     ctx.stroke();
     // diagonal left
     ctx.beginPath();
-    ctx.moveTo(50, 75);
-    ctx.lineTo(60, 85);
+    ctx.moveTo(50, 65);
+    ctx.lineTo(60, 75);
     ctx.stroke();
     // noose
     ctx.beginPath();
-    ctx.moveTo(160, 30);
-    ctx.lineTo(160, 66);
+    ctx.moveTo(160, 20);
+    ctx.lineTo(160, 56);
     ctx.stroke();
 
     if (lifeCounter === 6) {
         // man's head
         ctx.beginPath();
-        ctx.arc(160, 90, 25, 0, 2 * Math.PI);
+        ctx.arc(160, 80, 25, 0, 2 * Math.PI);
         ctx.stroke();
     } else if (lifeCounter === 5) {
         // man's body
         ctx.beginPath();
-        ctx.moveTo(160, 116);
-        ctx.lineTo(160, 180);
+        ctx.moveTo(160, 106);
+        ctx.lineTo(160, 170);
         ctx.stroke();
     } else if (lifeCounter === 4) {
         // man's left arm
         ctx.beginPath();
-        ctx.moveTo(160, 125);
-        ctx.lineTo(135, 150);
+        ctx.moveTo(160, 115);
+        ctx.lineTo(135, 140);
         ctx.stroke();
     } else if (lifeCounter === 3) {
         // man's right arm
         ctx.beginPath();
-        ctx.moveTo(160, 125);
-        ctx.lineTo(185, 150);
+        ctx.moveTo(160, 115);
+        ctx.lineTo(185, 140);
         ctx.stroke();
     } else if (lifeCounter === 2) {
         // man's left leg
         ctx.beginPath();
-        ctx.moveTo(160, 180);
-        ctx.lineTo(135, 220);
+        ctx.moveTo(160, 170);
+        ctx.lineTo(135, 210);
         ctx.stroke();
     } else if (lifeCounter === 1) {
         // man's right leg
         ctx.beginPath();
-        ctx.moveTo(160, 180);
-        ctx.lineTo(190, 220);
+        ctx.moveTo(160, 170);
+        ctx.lineTo(190, 210);
         ctx.stroke();
     } else if (lifeCounter === 0) {
         // left eye - line 1
         ctx.beginPath();
-        ctx.moveTo(149, 83);
-        ctx.lineTo(155, 89);
+        ctx.moveTo(149, 73);
+        ctx.lineTo(155, 79);
         ctx.stroke();
         // left eye - line 2
         ctx.beginPath();
-        ctx.moveTo(149, 89);
-        ctx.lineTo(155, 83);
+        ctx.moveTo(149, 79);
+        ctx.lineTo(155, 73);
         ctx.stroke();
         // right eye - line 1
         ctx.beginPath();
-        ctx.moveTo(166, 89);
-        ctx.lineTo(172, 83);
+        ctx.moveTo(166, 79);
+        ctx.lineTo(172, 73);
         ctx.stroke();
         // right eye - line 2
         ctx.beginPath();
-        ctx.moveTo(166, 83);
-        ctx.lineTo(172, 89);
+        ctx.moveTo(166, 73);
+        ctx.lineTo(172, 79);
         ctx.stroke();
         // mouth
         ctx.beginPath();
-        ctx.moveTo(151, 102);
-        ctx.lineTo(169, 102);
+        ctx.moveTo(151, 92);
+        ctx.lineTo(169, 92);
         ctx.stroke();
     }
 }
@@ -489,6 +563,10 @@ for (let i = 0; i < categoryOption.length; i++) {
             })
         } else if (categoryValue === 'harryPotterCharacters') {
             harryPotterCharacters.forEach((item) => {
+                wordOptions.push(item);
+            })
+        } else if (categoryValue === 'movies') {
+            movies.forEach((item) => {
                 wordOptions.push(item);
             })
         }
