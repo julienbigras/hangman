@@ -276,10 +276,6 @@ button:disabled {
   color: white;
 }
 
-button:hover {
-  background: yellow;
-}
-
 .letterButton {
   width: 60px;
   font-size: 1.8rem;
@@ -342,6 +338,52 @@ header {
   -webkit-box-shadow: 5px 5px 10px grey;
           box-shadow: 5px 5px 10px grey;
   font-size: 1.2rem;
+}
+
+.categoryOption:hover {
+  background-repeat: no-repeat;
+  color: white;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  letter-spacing: 0.2rem;
+}
+
+#countries:hover {
+  background-image: url(../assets/countriesBackground.jpg);
+  background-position: center center;
+}
+
+#outerSpace:hover {
+  background-image: url(../assets/outerSpaceBackground.jpg);
+}
+
+#movies:hover {
+  background-image: url(../assets/moviesBackground.jpg);
+  background-size: 100%;
+}
+
+#funAndGames:hover {
+  background-image: url(../assets/funAndGamesBackground.jpg);
+  background-position: center center;
+}
+
+#sportsTeamNames:hover {
+  background-image: url(../assets/sportsTeamsBackground.jpg);
+  background-position: center center;
+}
+
+#pokemon:hover {
+  background-image: url(../assets/pokemonBackground.jpg);
+  background-position: 35% 28%;
+}
+
+#rockBands:hover {
+  background-image: url(../assets/rockBandsBackground.jpg);
+}
+
+#harryPotterCharacters:hover {
+  background-image: url(../assets/harryPotterCharactersBackground.jpg);
+  background-position: 65% 28%;
 }
 
 main {
