@@ -10,6 +10,10 @@ button:disabled {
     color: white
 }
 
+button:hover {
+    background: yellow;
+}
+
 .letterButton {
     width: 60px;
     font-size: 1.8rem;

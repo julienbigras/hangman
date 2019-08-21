@@ -1,22 +1,38 @@
+header {
+    background: rgb(0,191,255);
+    height: 100vh;
+}
+
 .headerFlexContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-h2 {
-    @include fontSize(2rem);
-    margin-bottom: 2%;
+    h2 {
+        @include fontSize(2rem);
+        margin-bottom: 2%;
+    }
 }
 
 .categoryOptionSection {
+    text-align: center;
+}
+
+.categoryFlexContainer {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
     width: 100%;
-    .categoryOption {
+    margin-top: 2%;
+    .categoryColumn1,
+    .categoryColumn2 {
         width: 50%;
-        padding: 15px 0;
+    }
+    .categoryOption {
+        font-family: 'Lexend Deca', sans-serif;
+        width: 95%;
+        padding: 30px 0;
+        margin: 7px 0;
+        box-shadow: 5px 5px 10px grey;
+        font-size: 1.2rem;
     }
 }
 

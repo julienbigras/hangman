@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hangman</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
@@ -15,15 +16,22 @@
                 <h2>Welcome to Hangman!</h2>
                 <p>You know the drill: Correctly guess the word one letter at a time, lest a poor stick figure be hanged as a result of your failure.</p>
                 <div class="categoryOptionSection">
-                    <h3>Choose Your Category:</h3>
-                    <button class="categoryOption" value="funAndGames">Fun and Games</button>
-                    <button class="categoryOption" value="nhlTeamNames">NHL Teams</button>
-                    <button class="categoryOption" value="countries">Countries</button>
-                    <button class="categoryOption" value="rockBands">Rock Bands</button>
-                    <button class="categoryOption" value="pokemon">Pokemon</button>
-                    <button class="categoryOption" value="harryPotterCharacters">Harry Potter Characters</button>
-                    <button class="categoryOption" value="movies">Movies</button>
-                </div>
+                    <h3>Please select a category:</h3>
+                    <div class="categoryFlexContainer">
+                        <div class="categoryColumn1">
+                            <button class="categoryOption" value="countries">Countries</button>
+                            <button class="categoryOption" value="pokemon">Pokémon</button>
+                            <button class="categoryOption" value="sportsTeamNames">Sports Teams</button>
+                            <button class="categoryOption" value="funAndGames">Fun and Games</button>
+                        </div>
+                        <div class="categoryColumn2">
+                            <button class="categoryOption" value="harryPotterCharacters">Harry Potter Characters</button>
+                            <button class="categoryOption" value="movies">Movies</button>
+                            <button class="categoryOption" value="rockBands">Rock Bands</button>
+                            <button class="categoryOption" value="outerSpace">Outer Space</button>
+                        </div>
+                    </div> <!-- closes category flex container -->
+                </div> <!-- closes category option section -->
             </div> <!-- closes headerFlexContainer -->
         </div> <!-- closes wrapper -->
     </header>

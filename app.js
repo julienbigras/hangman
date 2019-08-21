@@ -35,9 +35,16 @@ const funAndGames = [
     'snakes and ladders',
     'cards against humanity',
     'hungry hungry hippos',
+    'duck hunt',
+    'goldeneye',
+    'super mario',
+    'the legend of zelda',
+    'call of duty',
+    'world of warcraft',
+    'rocket league',
 ]
 
-const nhlTeamNames = [
+const sportsTeamNames = [
     'canadiens',
     'oilers',
     'bruins',
@@ -69,6 +76,36 @@ const nhlTeamNames = [
     'red wings',
     'golden knights',
     'blue jackets',
+    'yankees',
+    'cubs',
+    'dodgers',
+    'red sox',
+    'mets',
+    'twins',
+    'braves',
+    'astros',
+    'phillies',
+    'cardinals',
+    'indians',
+    'giants',
+    'brewers',
+    'angels',
+    'blue jays',
+    'nationals',
+    'rays',
+    'pirates',
+    'athletics',
+    'reds',
+    'white sox',
+    'tigers',
+    'orioles',
+    'diamondbacks',
+    'padres',
+    'mariners',
+    'rockies',
+    'marlins',
+    'royals',
+    // 'rangers',
 ]
 
 const countries = [
@@ -169,8 +206,10 @@ const rockBands = [
     'arcade fire',
     'the police',
     'red hot chili peppers',
+    'the tragically hip',
     'nine inch nails',
     'judas priest',
+    'megadeth',
     'kiss',
     'talking heads',
     'creedence clearwater revival',
@@ -195,6 +234,7 @@ const rockBands = [
     'goo goo dolls',
     'pantera',
     'bush',
+    'queens of the stone age',
 ]
 
 const pokemon = [];
@@ -204,7 +244,7 @@ for (i = 1; i <= 151; i++) {
     const pokeUrl = `https://pokeapi.co/api/v2/pokemon/${[i]}/`
 
     const getPokemon = fetch(pokeUrl)
-        .then(function (response) {
+        .then(function(response) {
             return response.json()
         })
         .then(function(data) {
@@ -294,9 +334,38 @@ const movies = [
     'the usual suspects',
     'the wolf of wall street',
     'zodiac',
+    'zoolander',
+    'superbad',
     'the sandlot',
     'the land before time',
     'aladdin',
+    'rush hour',
+    'ex machina',
+    'wonder woman',
+]
+
+const outerSpace = [
+    'mercury',
+    'venus',
+    'earth',
+    'mars',
+    'saturn',
+    'jupiter',
+    'neptune',
+    'uranus',
+    'pluto',
+    'solar system',
+    'milky way',
+    'galaxy',
+    'asteroid',
+    'meteor',
+    'comet',
+    'planet',
+    'universe',
+    'constellation',
+    'satellite',
+    'space station',
+    'moon',
 ]
 
 // words from the selected category will be pushed to this array
@@ -484,7 +553,6 @@ const drawHangman = function() {
 // function to start (or restart) the game
 const startGame = function() {
     // reset the global variables
-    // wordOptions = [];
     correctGuesses = [];
     lifeCounter = 7;
     underscores = [];
@@ -548,8 +616,8 @@ for (let i = 0; i < categoryOption.length; i++) {
             funAndGames.forEach((item) => {
                 wordOptions.push(item);
             })
-        } else if (categoryValue === 'nhlTeamNames') {
-            nhlTeamNames.forEach((item) => {
+        } else if (categoryValue === 'sportsTeamNames') {
+            sportsTeamNames.forEach((item) => {
                 wordOptions.push(item);
             })
         } else if (categoryValue === 'countries') {
@@ -570,6 +638,10 @@ for (let i = 0; i < categoryOption.length; i++) {
             })
         } else if (categoryValue === 'movies') {
             movies.forEach((item) => {
+                wordOptions.push(item);
+            })
+        } else if (categoryValue === 'outerSpace') {
+            outerSpace.forEach((item) => {
                 wordOptions.push(item);
             })
         }
