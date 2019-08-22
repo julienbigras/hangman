@@ -27,6 +27,7 @@ header {
         width: 50%;
     }
     .categoryOption {
+        position: relative;
         font-family: 'Lexend Deca', sans-serif;
         width: 95%;
         padding: 30px 0;
@@ -34,15 +35,43 @@ header {
         box-shadow: 5px 5px 10px grey;
         font-size: 1.2rem;
     }
+    span {
+        font-family: 'Lexend Deca', sans-serif;
+        letter-spacing: 0.2rem;
+    }
+    .overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.4);
+        visibility: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        p {
+            font-family: 'Lexend Deca', sans-serif;
+            font-size: 1.2rem;
+            color: white;
+            letter-spacing: 0.2rem;
+        }
+    }
 }
 
 // CATEGORY BUTTONS HOVER EFFECTS
 
 .categoryOption:hover {
     background-repeat: no-repeat;
-    color: white;
     box-shadow: none;
-    letter-spacing: 0.2rem;
+}
+
+// .categoryOption:hover span {
+//     visibility: hidden;
+// }
+
+.categoryOption:hover .overlay {
+    visibility: visible;
 }
 
 #countries:hover {
