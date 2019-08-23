@@ -1,6 +1,6 @@
 header {
-    background: rgb(0,191,255);
-    height: 100vh;
+    background: $primary;
+    min-height: 100vh;
 }
 
 .headerFlexContainer {
@@ -8,8 +8,13 @@ header {
     flex-direction: column;
     align-items: center;
     h2 {
-        @include fontSize(2rem);
+        @include fontSize(3.5rem);
+        text-shadow: 5px 5px 5px $black;
+        color: $white;
         margin-bottom: 2%;
+    }
+    p {
+        text-transform: uppercase;
     }
 }
 
@@ -29,15 +34,16 @@ header {
     .categoryOption {
         position: relative;
         font-family: 'Lexend Deca', sans-serif;
-        width: 95%;
-        padding: 30px 0;
+        width: 90%;
+        padding: 27px 0;
         margin: 7px 0;
-        box-shadow: 5px 5px 10px grey;
+        box-shadow: 5px 5px 10px $black;
         font-size: 1.2rem;
     }
     span {
         font-family: 'Lexend Deca', sans-serif;
-        letter-spacing: 0.2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
     }
     .overlay {
         position: absolute;
@@ -53,8 +59,9 @@ header {
         p {
             font-family: 'Lexend Deca', sans-serif;
             font-size: 1.2rem;
-            color: white;
-            letter-spacing: 0.2rem;
+            text-transform: uppercase;
+            color: $white;
+            letter-spacing: 0.1rem;
         }
     }
 }

@@ -1,4 +1,5 @@
 @mixin fontSize($fontSizeValue) {
+    font-family: 'Roboto', sans-serif;
     font-size: ($fontSizeValue);
     font-weight: bold;
     text-align: center;
@@ -6,3 +7,8 @@
     margin: 1.5% 0 1.5%;
     letter-spacing: 0.1rem;
 }
+
+$primary: #3AAFA9;
+$secondary: #2B7A78;
+$black: #17252A;
+$white: #FEFFFF;
