@@ -408,6 +408,7 @@ const winCount = document.createElement('span');
 const lossCount = document.createElement('span');
 // variables for the category selection process
 const categoryOption = document.getElementsByClassName('categoryOption');
+const categorySpan = document.getElementsByClassName('categorySpan');
 const categoryDisplay = document.getElementById('categoryDisplay');
 // get all the elements with a class name of "letterButton" in order to add event listeners
 const letterButtons = document.getElementsByClassName('letterButton');
@@ -646,7 +647,7 @@ for (let i = 0; i < categoryOption.length; i++) {
             })
         }
         // display the name of the selected category on the page
-        categoryDisplay.innerHTML = categoryOption[i].innerHTML;
+        categoryDisplay.innerHTML = categorySpan[i].innerHTML;
 
         // hide the landing modal and display the main game area
         modal.style.display = 'none';

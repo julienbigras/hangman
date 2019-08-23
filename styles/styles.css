@@ -352,7 +352,7 @@ header {
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.45);
   visibility: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -372,50 +372,65 @@ header {
   letter-spacing: 0.2rem;
 }
 
-.categoryOption:hover {
+.categoryOption:hover,
+.categoryOption:focus {
   background-repeat: no-repeat;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-.categoryOption:hover .overlay {
+.categoryOption:hover span,
+.categoryOption:focus span {
+  visibility: hidden;
+}
+
+.categoryOption:hover .overlay,
+.categoryOption:focus .overlay {
   visibility: visible;
 }
 
-#countries:hover {
+#countries:hover,
+#countries:focus {
   background-image: url(../assets/countriesBackground.jpg);
   background-position: center center;
 }
 
-#outerSpace:hover {
+#outerSpace:hover,
+#outerSpace:focus {
   background-image: url(../assets/outerSpaceBackground.jpg);
 }
 
-#movies:hover {
+#movies:hover,
+#movies:focus {
   background-image: url(../assets/moviesBackground.jpg);
   background-size: 100%;
 }
 
-#funAndGames:hover {
+#funAndGames:hover,
+#funAndGames:focus {
   background-image: url(../assets/funAndGamesBackground.jpg);
   background-position: center center;
 }
 
-#sportsTeamNames:hover {
+#sportsTeamNames:hover,
+#sportsTeamNames:focus {
   background-image: url(../assets/sportsTeamsBackground.jpg);
   background-position: center center;
 }
 
-#pokemon:hover {
+#pokemon:hover,
+#pokemon:focus {
   background-image: url(../assets/pokemonBackground.jpg);
   background-position: 35% 28%;
 }
 
-#rockBands:hover {
+#rockBands:hover,
+#rockBands:focus {
   background-image: url(../assets/rockBandsBackground.jpg);
 }
 
-#harryPotterCharacters:hover {
+#harryPotterCharacters:hover,
+#harryPotterCharacters:focus {
   background-image: url(../assets/harryPotterCharactersBackground.jpg);
   background-position: 65% 28%;
 }
