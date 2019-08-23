@@ -299,13 +299,13 @@ header {
           align-items: center;
 }
 
-.headerFlexContainer h2 {
+.headerFlexContainer h1 {
   font-family: 'Roboto', sans-serif;
   font-size: 3.5rem;
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
-  margin: 1.5% 0 1.5%;
+  padding: 1.5% 0 1.5%;
   letter-spacing: 0.1rem;
   text-shadow: 5px 5px 5px #17252A;
   color: #FEFFFF;
@@ -446,26 +446,31 @@ header {
 
 main {
   display: none;
+  background: #3AAFA9;
+  min-height: 100vh;
 }
 
-h1 {
+h2 {
   font-family: 'Roboto', sans-serif;
   font-size: 2.2rem;
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
-  margin: 1.5% 0 1.5%;
+  padding: 1.5% 0 1.5%;
   letter-spacing: 0.1rem;
+  color: #FEFFFF;
 }
 
 .wordToGuess {
   margin: 2% 0;
   border: 1px solid black;
   text-align: center;
+  background: #2B7A78;
 }
 
 .wordToGuess h3 {
   margin: 1.5% 0;
+  color: #FEFFFF;
 }
 
 .wordToGuess p {
@@ -474,6 +479,7 @@ h1 {
   font-size: 1.8rem;
   text-align: center;
   letter-spacing: 0.8rem;
+  color: #FEFFFF;
 }
 
 .flexContainer {

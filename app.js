@@ -409,6 +409,14 @@ const outerSpace = [
     'singularity',
     'telescope',
     'relativity',
+    'oort cloud',
+    'kuiper belt',
+    'hubble',
+    'stephen hawking',
+    'carl sagan',
+    'neil degrasse tyson',
+    'neil armstrong',
+    'buzz aldrin',
 ]
 
 // words from the selected category will be pushed to this array

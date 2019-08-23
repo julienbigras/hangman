@@ -1,17 +1,22 @@
 main {
     display: none;
+    background: $primary;
+    min-height: 100vh;
 }
 
-h1 {
+h2 {
  @include fontSize(2.2rem);
+ color: $white;
 }
 
 .wordToGuess {
     margin: 2% 0;
     border: 1px solid black;
     text-align: center;
+    background: $secondary;
     h3 {
         margin: 1.5% 0;
+        color: $white;
     }
     p {
         margin-bottom: 1.2%;
@@ -19,6 +24,7 @@ h1 {
         font-size: 1.8rem;
         text-align: center;
         letter-spacing: 0.8rem;
+        color: $white;
     }
 }
 
