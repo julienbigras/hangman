@@ -8,10 +8,9 @@ header {
     flex-direction: column;
     align-items: center;
     h1 {
-        @include fontSize(3.5rem);
+        @include fontSize(3.3rem);
         text-shadow: 5px 5px 5px $black;
         color: $white;
-        margin-bottom: 2%;
     }
     p {
         text-transform: uppercase;
@@ -33,15 +32,15 @@ header {
     }
     .categoryOption {
         position: relative;
-        font-family: 'Lexend Deca', sans-serif;
         width: 90%;
         padding: 27px 0;
         margin: 7px 0;
-        box-shadow: 5px 5px 10px $black;
-        font-size: 1.2rem;
+        @include boxShadow($black);
+        // box-shadow: 5px 5px 10px $black;
+        font-size: 0.9rem;
+        font-weight: bold;
     }
     span {
-        font-family: 'Lexend Deca', sans-serif;
         text-transform: uppercase;
         letter-spacing: 0.1rem;
     }
@@ -57,10 +56,9 @@ header {
         justify-content: center;
         align-items: center;
         p {
-            font-family: 'Lexend Deca', sans-serif;
-            font-size: 1.2rem;
             text-transform: uppercase;
             color: $white;
+            font-size: 0.9rem;
             letter-spacing: 0.1rem;
         }
     }

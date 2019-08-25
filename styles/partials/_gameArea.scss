@@ -5,15 +5,17 @@ main {
 }
 
 h2 {
- @include fontSize(2.2rem);
- color: $white;
+    @include fontSize(2.2rem);
+    color: $white;
+    text-shadow: 5px 5px 5px $black;
 }
 
 .wordToGuess {
-    margin: 2% 0;
-    border: 1px solid black;
+    margin-bottom: 2%;
+    border: 1px solid $black;
     text-align: center;
     background: $secondary;
+    @include boxShadow($black);
     h3 {
         margin: 1.5% 0;
         color: $white;
@@ -43,7 +45,8 @@ h2 {
     text-align: center;
     canvas {
         margin-top: 2%;
-        border: 1px solid black;
+        background: $white;
+        border: 1px solid $black;
     }
     p {
         margin: 2% 0;
@@ -59,16 +62,33 @@ h2 {
     text-align: center;
     align-items: center;
     justify-content: center;
+
     .resultsText {
-        border: 1px solid black;
+        background: $secondary;
+        border: 1px solid $black;
+        @include boxShadow($black);
         p {
-            padding: 20px;
+            font-size: 1.2rem;
+            color: $white;
+            padding: 40px;
             margin-bottom: 2%;
         }
         button {
-            margin-bottom: 20px;
-            border: 2px solid black;
-            background: white;
+            width: 220px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            font-weight: bold;
+            padding: 20px 15px;
+            border: 1px solid $black;
+            background: $white;
+            @include boxShadow($black);
+        }
+        button:hover,
+        button:focus {
+            box-shadow: none;
+            background: $black;
+            color: $white;
+            border: 1px solid $white;
         }
     }
 }

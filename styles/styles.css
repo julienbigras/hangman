@@ -238,7 +238,7 @@ a,
 label,
 textarea,
 span {
-  font-family: "Raleway";
+  font-family: "Roboto", sans-serif;
 }
 
 img {
@@ -301,7 +301,7 @@ header {
 
 .headerFlexContainer h1 {
   font-family: 'Roboto', sans-serif;
-  font-size: 3.5rem;
+  font-size: 3.3rem;
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
@@ -309,7 +309,6 @@ header {
   letter-spacing: 0.1rem;
   text-shadow: 5px 5px 5px #17252A;
   color: #FEFFFF;
-  margin-bottom: 2%;
 }
 
 .headerFlexContainer p {
@@ -339,17 +338,16 @@ header {
 
 .categoryFlexContainer .categoryOption {
   position: relative;
-  font-family: 'Lexend Deca', sans-serif;
   width: 90%;
   padding: 27px 0;
   margin: 7px 0;
-  -webkit-box-shadow: 5px 5px 10px #17252A;
-          box-shadow: 5px 5px 10px #17252A;
-  font-size: 1.2rem;
+  -webkit-box-shadow: 5px 5px 5px #17252A;
+          box-shadow: 5px 5px 5px #17252A;
+  font-size: 0.9rem;
+  font-weight: bold;
 }
 
 .categoryFlexContainer span {
-  font-family: 'Lexend Deca', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
 }
@@ -374,10 +372,9 @@ header {
 }
 
 .categoryFlexContainer .overlay p {
-  font-family: 'Lexend Deca', sans-serif;
-  font-size: 1.2rem;
   text-transform: uppercase;
   color: #FEFFFF;
+  font-size: 0.9rem;
   letter-spacing: 0.1rem;
 }
 
@@ -459,13 +456,16 @@ h2 {
   padding: 1.5% 0 1.5%;
   letter-spacing: 0.1rem;
   color: #FEFFFF;
+  text-shadow: 5px 5px 5px #17252A;
 }
 
 .wordToGuess {
-  margin: 2% 0;
-  border: 1px solid black;
+  margin-bottom: 2%;
+  border: 1px solid #17252A;
   text-align: center;
   background: #2B7A78;
+  -webkit-box-shadow: 5px 5px 5px #17252A;
+          box-shadow: 5px 5px 5px #17252A;
 }
 
 .wordToGuess h3 {
@@ -501,7 +501,8 @@ h2 {
 
 .gameAreaRight canvas {
   margin-top: 2%;
-  border: 1px solid black;
+  background: #FEFFFF;
+  border: 1px solid #17252A;
 }
 
 .gameAreaRight p {
@@ -525,18 +526,38 @@ h2 {
 }
 
 .results .resultsText {
-  border: 1px solid black;
+  background: #2B7A78;
+  border: 1px solid #17252A;
+  -webkit-box-shadow: 5px 5px 5px #17252A;
+          box-shadow: 5px 5px 5px #17252A;
 }
 
 .results .resultsText p {
-  padding: 20px;
+  font-size: 1.2rem;
+  color: #FEFFFF;
+  padding: 40px;
   margin-bottom: 2%;
 }
 
 .results .resultsText button {
-  margin-bottom: 20px;
-  border: 2px solid black;
-  background: white;
+  width: 220px;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 20px 15px;
+  border: 1px solid #17252A;
+  background: #FEFFFF;
+  -webkit-box-shadow: 5px 5px 5px #17252A;
+          box-shadow: 5px 5px 5px #17252A;
+}
+
+.results .resultsText button:hover,
+.results .resultsText button:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background: #17252A;
+  color: #FEFFFF;
+  border: 1px solid #FEFFFF;
 }
 
 footer {
