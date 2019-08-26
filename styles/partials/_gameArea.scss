@@ -1,7 +1,7 @@
 main {
     display: none;
     background: $primary;
-    min-height: 100vh;
+    min-height: calc(100vh - 25px);
 }
 
 h2 {
@@ -24,7 +24,6 @@ h2 {
         color: $white;
     }
     p {
-        // margin-bottom: 1.2%;
         font-family: 'Roboto Mono', monospace;
         font-size: 2rem;
         text-align: center;
@@ -33,7 +32,7 @@ h2 {
     }
 }
 
-.flexContainer {
+.gameFlexContainer {
     display: flex;
 }
 
@@ -50,7 +49,7 @@ h2 {
     justify-content: center;
     align-items: center;
     canvas {
-        margin-top: 5%;
+        margin-top: 3%;
         background: $secondary;
         border: 1px solid $black;
         @include boxShadow($black);
@@ -60,6 +59,7 @@ h2 {
         color: $white;
         margin-top: 10px;
         text-align: center;
+        font-size: 0.9rem;
         border: 1px solid $black;
         width: 300px;
         padding: 4px 0;
@@ -85,15 +85,15 @@ h2 {
         }
         .roundsWonOrLost span {
             text-transform: uppercase;
+            font-weight: bold;
             color: $white;
-            // padding-bottom: 20px;
         }
         .roundsWonOrLost span:first-of-type {
             margin-right: 10px;
         }
         button {
-            width: 220px;
-            margin: 20px 0 40px;
+            width: 210px;
+            margin: 20px 5px 40px;
             text-transform: uppercase;
             font-weight: bold;
             padding: 20px 15px;

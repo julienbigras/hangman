@@ -485,7 +485,7 @@ header {
 main {
   display: none;
   background: #3AAFA9;
-  min-height: 100vh;
+  min-height: calc(100vh - 25px);
 }
 
 h2 {
@@ -524,7 +524,7 @@ h2 {
   color: #FEFFFF;
 }
 
-.flexContainer {
+.gameFlexContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -554,7 +554,7 @@ h2 {
 }
 
 .gameAreaRight canvas {
-  margin-top: 5%;
+  margin-top: 3%;
   background: #2B7A78;
   border: 1px solid #17252A;
   -webkit-box-shadow: 5px 5px 5px #17252A;
@@ -566,6 +566,7 @@ h2 {
   color: #FEFFFF;
   margin-top: 10px;
   text-align: center;
+  font-size: 0.9rem;
   border: 1px solid #17252A;
   width: 300px;
   padding: 4px 0;
@@ -601,6 +602,7 @@ h2 {
 
 .results .resultsText .roundsWonOrLost span {
   text-transform: uppercase;
+  font-weight: bold;
   color: #FEFFFF;
 }
 
@@ -609,8 +611,8 @@ h2 {
 }
 
 .results .resultsText button {
-  width: 220px;
-  margin: 20px 0 40px;
+  width: 210px;
+  margin: 20px 5px 40px;
   text-transform: uppercase;
   font-weight: bold;
   padding: 20px 15px;
@@ -630,12 +632,83 @@ h2 {
 }
 
 footer {
-  background: black;
+  display: none;
+  background: #17252A;
 }
 
 footer p {
-  color: white;
+  font-size: 0.8rem;
+  color: #FEFFFF;
   text-align: center;
-  padding: 5px 0;
+  padding: 4px 0;
+}
+
+@media (max-width: 1160px) {
+  .results .resultsText button:first-of-type {
+    margin-bottom: 5px;
+  }
+  .results .resultsText button:last-of-type {
+    margin-top: 5px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .wrapper {
+    width: 95%;
+  }
+}
+
+@media (max-width: 720px) {
+  .categoryFlexContainer .categoryOption {
+    height: 100px;
+  }
+  h2 {
+    padding: 5% 0;
+  }
+  .gameFlexContainer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .gameFlexContainer .letterButtonContainer,
+  .gameFlexContainer .gameAreaRight {
+    width: 100%;
+  }
+  .wordToGuess p {
+    font-size: 1.8rem;
+  }
+  .gameAreaRight .lives {
+    margin-bottom: 20px;
+  }
+  .gameAreaRight canvas {
+    margin-top: 5%;
+  }
+  .gameArea .results {
+    width: 100%;
+    margin-top: 5%;
+  }
+}
+
+@media (max-width: 468px) {
+  .headerFlexContainer .gameInfo p:first-of-type {
+    width: 90%;
+  }
+  .categoryFlexContainer .categoryOption {
+    font-size: 0.8rem;
+    padding: 0px;
+  }
+  .categoryFlexContainer .overlay p {
+    font-size: 0.8rem;
+  }
+  .wordToGuess p {
+    font-size: 1.5rem;
+  }
+  .results .resultsText button {
+    width: 80%;
+  }
+  .results .resultsText p {
+    padding: 20px;
+  }
 }
 /*# sourceMappingURL=styles.css.map */

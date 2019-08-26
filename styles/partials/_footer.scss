@@ -1,8 +1,10 @@
 footer {
-    background: black;
+    display: none;
+    background: $black;
     p {
-        color: white;
+        font-size: 0.8rem;
+        color: $white;
         text-align: center;
-        padding: 5px 0;
+        padding: 4px 0;
     }
 }

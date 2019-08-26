@@ -239,6 +239,10 @@ const rockBands = [
     'metallica',
     'queen',
     'black sabbath',
+    'heart',
+    'kansas',
+    'toto',
+    'fall out boy',
     'rush',
     'aerosmith',
     'fleetwood mac',
@@ -259,10 +263,12 @@ const rockBands = [
     'grateful dead',
     'bon jovi',
     'coldplay',
+    'the beach boys',
     'journey',
     'offspring',
     'arcade fire',
     'the police',
+    'genesis',
     'red hot chili peppers',
     'the tragically hip',
     'nine inch nails',
@@ -278,14 +284,29 @@ const rockBands = [
     'the white stripes',
     'incubus',
     'korn',
+    'limp bizkit',
+    'arctic monkeys',
+    'creed',
+    'nickelback',
+    'dave matthews band',
     'finger eleven',
     'sloan',
     'matthew good band',
     'third eye blind',
     'alice in chains',
     'smashing pumpkins',
+    'kings of leon',
+    'steely dan',
+    'evanescence',
+    'the cure',
+    'scorpions',
+    'three days grace',
     'weezer',
     'soundgarden',
+    'styx',
+    'foreigner',
+    'van halen',
+    'zz top',
     'rage against the machine',
     'no doubt',
     'stone temple pilots',
@@ -296,6 +317,9 @@ const rockBands = [
     'pantera',
     'bush',
     'queens of the stone age',
+    'the killers',
+    'paramore',
+    'reo speedwagon'
 ]
 
 const pokemon = [];
@@ -350,6 +374,11 @@ const movies = [
     'jurassic park',
     'the matrix',
     'the lion king',
+    'cinderella',
+    'toy story',
+    'the little mermaid',
+    'finding nemo',
+    'peter pan',
     'fight club',
     'good will hunting',
     'the graduate',
@@ -359,8 +388,20 @@ const movies = [
     'the exorcist',
     'braveheart',
     'gladiator',
+    'the truman show',
+    'independence day',
+    'die hard',
     'a clockwork orange',
+    'avatar',
+    'slumdog millionaire',
+    'no country for old men',
+    'the hurt locker',
+    'the shape of water',
+    'a star is born',
     'saving private ryan',
+    'get out',
+    'django unchained',
+    'a beautiful mind',
     'raiders of the lost ark',
     'gone with the wind',
     'raging bull',
@@ -511,6 +552,8 @@ let roundsLost = 0;
 const modal = document.getElementById('modal');
 // variable for displaying the main game area
 const main = document.getElementById('main');
+// variable for displaying the footer
+const footer = document.getElementById('footer');
 // variables for appending the word to guess to the page
 const wordToGuess = document.getElementById('wordToGuess');
 let guess = document.createElement('p');
@@ -772,7 +815,8 @@ for (let i = 0; i < categoryOption.length; i++) {
 
         // hide the landing modal and display the main game area
         modal.style.display = 'none';
-        main.style.display = "block"
+        main.style.display = 'block';
+        footer.style.display = 'block';
         // run the start game function
         startGame();
 
