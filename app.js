@@ -540,6 +540,7 @@ const ctx = canvas.getContext("2d");
 const drawHangman = function() {
 
     ctx.lineWidth = '2';
+    ctx.strokeStyle = '#FEFFFF';
 
     // vertical bar left
     ctx.beginPath();
@@ -831,7 +832,7 @@ const userGuess = function() {
         // display results section
         resultsSection.style.display = 'flex';
         // display a message telling the user they have lost, and what the answer was 
-        answer.innerHTML = `Oh no, you lost! The correct answer was ${randomWord.toUpperCase()}.`;
+        answer.innerHTML = `Oh no, you lost! The correct answer was ${randomWord.toUpperCase()}. Rest in peace, stick man.`;
         correctAnswer.appendChild(answer);
         // update the rounds lost count and append the new count to the page
         roundsLost++;

@@ -1,20 +1,23 @@
 button {
-    background: white;
-    color: black;
-    border: 2px solid black;
+    background: $white;
+    color: $black;
+    border: 2px solid $black;
     margin-bottom: 5px;
+    @include boxShadow($black);
 }
 
 button:disabled {
-    background: black;
-    color: white
+    background: $black;
+    color: $white;
+    box-shadow: none;
 }
-
-// button:hover {
-//     background: yellow;
-// }
 
 .letterButton {
     width: 60px;
     font-size: 1.8rem;
+}
+
+.letterButton:hover,
+.letterButton:focus {
+    background: lightgrey;
 }

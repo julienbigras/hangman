@@ -265,20 +265,29 @@ a {
 }
 
 button {
-  background: white;
-  color: black;
-  border: 2px solid black;
+  background: #FEFFFF;
+  color: #17252A;
+  border: 2px solid #17252A;
   margin-bottom: 5px;
+  -webkit-box-shadow: 5px 5px 5px #17252A;
+          box-shadow: 5px 5px 5px #17252A;
 }
 
 button:disabled {
-  background: black;
-  color: white;
+  background: #17252A;
+  color: #FEFFFF;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .letterButton {
   width: 60px;
   font-size: 1.8rem;
+}
+
+.letterButton:hover,
+.letterButton:focus {
+  background: lightgrey;
 }
 
 header {
@@ -299,20 +308,52 @@ header {
           align-items: center;
 }
 
-.headerFlexContainer h1 {
+.headerFlexContainer .gameInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.1rem;
+  line-height: 1.2rem;
+  color: #FEFFFF;
+  background: #2B7A78;
+  border: 1px solid #17252A;
+  -webkit-box-shadow: 5px 5px 5px #17252A;
+          box-shadow: 5px 5px 5px #17252A;
+  padding: 15px;
+}
+
+.headerFlexContainer .gameInfo h1 {
   font-family: 'Roboto', sans-serif;
-  font-size: 3.3rem;
+  font-size: 2.6rem;
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
-  padding: 1.5% 0 1.5%;
   letter-spacing: 0.1rem;
   text-shadow: 5px 5px 5px #17252A;
   color: #FEFFFF;
+  padding: 1% 0;
+  margin-bottom: 20px;
 }
 
-.headerFlexContainer p {
-  text-transform: uppercase;
+.headerFlexContainer .gameInfo p:first-of-type {
+  width: 75%;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.headerFlexContainer .gameInfo p:last-of-type {
+  font-weight: bold;
 }
 
 .categoryOptionSection {
@@ -328,7 +369,7 @@ header {
       -ms-flex-direction: row;
           flex-direction: row;
   width: 100%;
-  margin-top: 2%;
+  margin-top: 1%;
 }
 
 .categoryFlexContainer .categoryColumn1,
@@ -339,8 +380,8 @@ header {
 .categoryFlexContainer .categoryOption {
   position: relative;
   width: 90%;
-  padding: 27px 0;
-  margin: 7px 0;
+  padding: 26px 0;
+  margin: 6px 0;
   -webkit-box-shadow: 5px 5px 5px #17252A;
           box-shadow: 5px 5px 5px #17252A;
   font-size: 0.9rem;
@@ -453,10 +494,10 @@ h2 {
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
-  padding: 1.5% 0 1.5%;
   letter-spacing: 0.1rem;
   color: #FEFFFF;
   text-shadow: 5px 5px 5px #17252A;
+  padding: 1% 0;
 }
 
 .wordToGuess {
@@ -464,19 +505,20 @@ h2 {
   border: 1px solid #17252A;
   text-align: center;
   background: #2B7A78;
+  padding: 25px 0;
   -webkit-box-shadow: 5px 5px 5px #17252A;
           box-shadow: 5px 5px 5px #17252A;
 }
 
 .wordToGuess h3 {
-  margin: 1.5% 0;
+  font-size: 0.9rem;
+  margin-bottom: 1.5%;
   color: #FEFFFF;
 }
 
 .wordToGuess p {
-  margin-bottom: 1.2%;
   font-family: 'Roboto Mono', monospace;
-  font-size: 1.8rem;
+  font-size: 2rem;
   text-align: center;
   letter-spacing: 0.8rem;
   color: #FEFFFF;
@@ -496,21 +538,39 @@ h2 {
 
 .gameAreaRight {
   width: 50%;
-  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .gameAreaRight canvas {
-  margin-top: 2%;
-  background: #FEFFFF;
+  margin-top: 5%;
+  background: #2B7A78;
   border: 1px solid #17252A;
+  -webkit-box-shadow: 5px 5px 5px #17252A;
+          box-shadow: 5px 5px 5px #17252A;
 }
 
-.gameAreaRight p {
-  margin: 2% 0;
-}
-
-.gameAreaRight .roundsWonOrLost span {
-  margin-right: 10px;
+.gameAreaRight .lives {
+  background: #17252A;
+  color: #FEFFFF;
+  margin-top: 10px;
+  text-align: center;
+  border: 1px solid #17252A;
+  width: 300px;
+  padding: 4px 0;
+  -webkit-box-shadow: 5px 5px 5px #17252A;
+          box-shadow: 5px 5px 5px #17252A;
 }
 
 .results {
@@ -535,13 +595,22 @@ h2 {
 .results .resultsText p {
   font-size: 1.2rem;
   color: #FEFFFF;
-  padding: 40px;
+  padding: 40px 40px 20px;
   margin-bottom: 2%;
+}
+
+.results .resultsText .roundsWonOrLost span {
+  text-transform: uppercase;
+  color: #FEFFFF;
+}
+
+.results .resultsText .roundsWonOrLost span:first-of-type {
+  margin-right: 10px;
 }
 
 .results .resultsText button {
   width: 220px;
-  margin-bottom: 40px;
+  margin: 20px 0 40px;
   text-transform: uppercase;
   font-weight: bold;
   padding: 20px 15px;

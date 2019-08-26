@@ -7,13 +7,36 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    h1 {
-        @include fontSize(3.3rem);
-        text-shadow: 5px 5px 5px $black;
-        color: $white;
-    }
-    p {
+    .gameInfo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
         text-transform: uppercase;
+        text-align: center;
+        font-size: 0.8rem;
+        letter-spacing: 0.1rem;
+        line-height: 1.2rem;
+        color: $white;
+        background: $secondary;
+        border: 1px solid $black;
+        @include boxShadow($black);
+        padding: 15px;
+        h1 {
+            @include fontSize(2.6rem);
+            text-shadow: 5px 5px 5px $black;
+            color: $white;
+            padding: 1% 0;
+            margin-bottom: 20px;
+        }
+        p:first-of-type {
+            width: 75%;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        p:last-of-type {
+            font-weight: bold;
+        }
     }
 }
 
@@ -25,7 +48,7 @@ header {
     display: flex;
     flex-direction: row;
     width: 100%;
-    margin-top: 2%;
+    margin-top: 1%;
     .categoryColumn1,
     .categoryColumn2 {
         width: 50%;
@@ -33,10 +56,9 @@ header {
     .categoryOption {
         position: relative;
         width: 90%;
-        padding: 27px 0;
-        margin: 7px 0;
+        padding: 26px 0;
+        margin: 6px 0;
         @include boxShadow($black);
-        // box-shadow: 5px 5px 10px $black;
         font-size: 0.9rem;
         font-weight: bold;
     }

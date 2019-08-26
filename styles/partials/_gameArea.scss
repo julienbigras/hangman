@@ -8,6 +8,7 @@ h2 {
     @include fontSize(2.2rem);
     color: $white;
     text-shadow: 5px 5px 5px $black;
+    padding: 1% 0;
 }
 
 .wordToGuess {
@@ -15,15 +16,17 @@ h2 {
     border: 1px solid $black;
     text-align: center;
     background: $secondary;
+    padding: 25px 0;
     @include boxShadow($black);
     h3 {
-        margin: 1.5% 0;
+        font-size: 0.9rem;
+        margin-bottom: 1.5%;
         color: $white;
     }
     p {
-        margin-bottom: 1.2%;
+        // margin-bottom: 1.2%;
         font-family: 'Roboto Mono', monospace;
-        font-size: 1.8rem;
+        font-size: 2rem;
         text-align: center;
         letter-spacing: 0.8rem;
         color: $white;
@@ -42,17 +45,25 @@ h2 {
 
 .gameAreaRight {
     width: 50%;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     canvas {
-        margin-top: 2%;
-        background: $white;
+        margin-top: 5%;
+        background: $secondary;
         border: 1px solid $black;
+        @include boxShadow($black);
     }
-    p {
-        margin: 2% 0;
-    }
-    .roundsWonOrLost span {
-        margin-right: 10px;
+    .lives {
+        background: $black;
+        color: $white;
+        margin-top: 10px;
+        text-align: center;
+        border: 1px solid $black;
+        width: 300px;
+        padding: 4px 0;
+        @include boxShadow($black);
     }
 }
 
@@ -62,7 +73,6 @@ h2 {
     text-align: center;
     align-items: center;
     justify-content: center;
-
     .resultsText {
         background: $secondary;
         border: 1px solid $black;
@@ -70,12 +80,20 @@ h2 {
         p {
             font-size: 1.2rem;
             color: $white;
-            padding: 40px;
+            padding: 40px 40px 20px;
             margin-bottom: 2%;
+        }
+        .roundsWonOrLost span {
+            text-transform: uppercase;
+            color: $white;
+            // padding-bottom: 20px;
+        }
+        .roundsWonOrLost span:first-of-type {
+            margin-right: 10px;
         }
         button {
             width: 220px;
-            margin-bottom: 40px;
+            margin: 20px 0 40px;
             text-transform: uppercase;
             font-weight: bold;
             padding: 20px 15px;
