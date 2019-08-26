@@ -515,7 +515,6 @@ h2 {
 
 .wordToGuess h3 {
   font-size: 0.9rem;
-  margin-bottom: 1.5%;
   color: #FEFFFF;
 }
 
@@ -524,7 +523,9 @@ h2 {
   font-size: 2rem;
   text-align: center;
   letter-spacing: 0.8rem;
+  line-height: 1.5rem;
   color: #FEFFFF;
+  margin-top: 2%;
 }
 
 .gameFlexContainer {
