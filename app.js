@@ -388,9 +388,6 @@ const getHarryPotterCharacters = fetch(harryPotterUrl)
         }
     })
 
-    console.log(harryPotterCharacters, 'harry potter');
-    console.log(pokemon, 'pokemon')
-
 const movies = [
     'the godfather',
     'citizen kane',
@@ -566,13 +563,6 @@ const outerSpace = [
     'buzz aldrin',
     'doppler effect',
 ]
-
-console.log(countries.length, 'countries');
-console.log(sportsTeamNames.length, 'sports teams');
-console.log(funAndGames.length, 'fun and games');
-console.log(rockBands.length, 'rock bands');
-console.log(movies.length, 'movies');
-console.log(outerSpace.length, 'outer space');
 
 // words from the selected category will be pushed to this array
 let wordOptions = [];
@@ -786,10 +776,8 @@ const startGame = function() {
     drawHangman();
     // get a random word from the array of possible words
     randomWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
-    console.log(randomWord);
     // split the randomly chosen word into an array of individual letters
     const splitRandomWord = randomWord.split('');
-    console.log(splitRandomWord);
     // replace each letter in the split name array with underscores
     const underscoreWord = splitRandomWord.forEach((item) => {
         if (item === ' ') {
@@ -800,8 +788,6 @@ const startGame = function() {
         }
         return underscores;
     })
-    console.log(underscores);
-    console.log(correctGuesses);
     // append the string of underscores to the page
     guess.innerHTML = underscores.join('');
     wordToGuess.appendChild(guess);
@@ -945,10 +931,6 @@ document.addEventListener('keypress', (e) => {
             letterButtons[i].disabled = true;
             // run the userGuess function
             userGuess();
-
-            console.log(guessedLetter);
-            console.log(correctGuesses);
-            console.log(underscores);
         }
     }
 })
@@ -962,10 +944,6 @@ for (let i = 0; i < letterButtons.length; i++) {
         letterButtons[i].disabled = true;
         // run the userGuess function
         userGuess();
-
-        console.log(guessedLetter);
-        console.log(correctGuesses);
-        console.log(underscores);
     })
 }
 
