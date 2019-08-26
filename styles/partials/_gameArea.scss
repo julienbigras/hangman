@@ -58,6 +58,7 @@ h2 {
         background: $black;
         color: $white;
         margin-top: 10px;
+        margin-bottom: 3%;
         text-align: center;
         font-size: 0.9rem;
         border: 1px solid $black;
@@ -77,6 +78,7 @@ h2 {
         background: $secondary;
         border: 1px solid $black;
         @include boxShadow($black);
+        margin-bottom: 3%;
         p {
             font-size: 1.2rem;
             color: $white;
