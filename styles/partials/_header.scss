@@ -92,6 +92,7 @@ header {
 .categoryOption:focus {
     background-repeat: no-repeat;
     box-shadow: none;
+    background-size: 100%;
 }
 
 .categoryOption:hover span,
@@ -118,30 +119,32 @@ header {
 #movies:hover,
 #movies:focus {
     background-image: url(../assets/moviesBackground.jpg);
-    background-size: 100%;
 }
 
 #funAndGames:hover,
 #funAndGames:focus {
     background-image: url(../assets/funAndGamesBackground.jpg);
-    background-position: center center;
+    background-position: 10% center;
 }
 
 #sportsTeamNames:hover,
 #sportsTeamNames:focus {
     background-image: url(../assets/sportsTeamsBackground.jpg);
-    background-position: center center;
+    background-size: 120%;
+    background-position: center 60%;
 }
 
 #pokemon:hover,
 #pokemon:focus {
     background-image: url(../assets/pokemonBackground.jpg);
     background-position: 35% 28%;
+    background-size: 120%;
 }
 
 #rockBands:hover,
 #rockBands:focus {
     background-image: url(../assets/rockBandsBackground.jpg);
+    background-position: center 10%;
 }
 
 #harryPotterCharacters:hover,
