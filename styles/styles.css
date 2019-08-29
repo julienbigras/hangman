@@ -420,7 +420,8 @@ header {
 }
 
 .categoryOption:hover,
-.categoryOption:focus {
+.categoryOption:focus,
+.categoryOption:active {
   background-repeat: no-repeat;
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -428,59 +429,69 @@ header {
 }
 
 .categoryOption:hover span,
-.categoryOption:focus span {
+.categoryOption:focus span,
+.categoryOption:active span {
   visibility: hidden;
 }
 
 .categoryOption:hover .overlay,
-.categoryOption:focus .overlay {
+.categoryOption:focus .overlay,
+.categoryOption:active .overlay {
   visibility: visible;
 }
 
 #countries:hover,
-#countries:focus {
+#countries:focus,
+#countries:active {
   background-image: url(../assets/countriesBackground.jpg);
   background-position: center center;
 }
 
 #outerSpace:hover,
-#outerSpace:focus {
+#outerSpace:focus,
+#outerSpace:active {
   background-image: url(../assets/outerSpaceBackground.jpg);
 }
 
 #movies:hover,
-#movies:focus {
+#movies:focus,
+#movies:active {
   background-image: url(../assets/moviesBackground.jpg);
 }
 
 #funAndGames:hover,
-#funAndGames:focus {
+#funAndGames:focus,
+#funAndGames:active {
   background-image: url(../assets/funAndGamesBackground.jpg);
   background-position: 10% center;
 }
 
 #sportsTeamNames:hover,
-#sportsTeamNames:focus {
+#sportsTeamNames:focus,
+#sportsTeamNames:active {
   background-image: url(../assets/sportsTeamsBackground.jpg);
   background-size: 120%;
   background-position: center 60%;
 }
 
 #pokemon:hover,
-#pokemon:focus {
+#pokemon:focus,
+#pokemon:active {
   background-image: url(../assets/pokemonBackground.jpg);
   background-position: 35% 28%;
   background-size: 120%;
 }
 
 #rockBands:hover,
-#rockBands:focus {
+#rockBands:focus,
+#rockBands:active {
   background-image: url(../assets/rockBandsBackground.jpg);
   background-position: center 10%;
 }
 
 #harryPotterCharacters:hover,
-#harryPotterCharacters:focus {
+#harryPotterCharacters:focus,
+#harryPotterCharacters:active {
   background-image: url(../assets/harryPotterCharactersBackground.jpg);
   background-position: 65% 28%;
 }
